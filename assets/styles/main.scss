@@ -1,0 +1,387 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Headland+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// rgb(246 244 242)
+// #cb9274
+
+$accent-color-light: #e2eaf0;
+$accent-color: #c7dee2;
+$accent-color-dark: #097f9d;
+$accent-color-text: #055569;
+$shadow-color: rgba(10, 43, 75, 0.2);
+
+html {
+  font-size: 10px;
+  overflow-x: hidden;
+  background-color: rgba($accent-color-light, .5);
+}
+
+body {
+  background: linear-gradient(90deg, #0000 calc(100% - 1px), rgba($accent-color, 1) 0);
+  background-size: calc((100% - 5*5px)/5 + 5px) 100%;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.header-nav {
+  padding-top: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba($accent-color-light, 0.8) 40%,
+    rgba($accent-color, 0.5)
+  );
+  height: 100vh;
+}
+
+.nav {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 10rem;
+  text-align: center;
+
+  &__category-item,
+  &__category-list {
+    display: none;
+  }
+
+  &__line {
+    width: 95%;
+    text-align: center;
+    margin: auto;
+    height: 0.1px;
+    background-color: #39162845;
+    border: none;
+  }
+
+  &__block {
+    align-self: center;
+    height: 100%;
+    flex: 1 1 0px;
+    text-align: center;
+    a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      justify-content: center;
+      text-decoration: none;
+      flex-direction: column;
+      line-height: 2.3rem;
+      color: #222;
+      span {
+        line-height: 3rem;
+        color: $accent-color-text;
+        font-weight: 800;
+      }
+    }
+    img {
+      height: 100%;
+      padding: 1rem 0px 0 2rem;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.header {
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__image {
+    position: relative;
+    display: block;
+    width: 40vw;
+    overflow: hidden;
+    &_big {
+      position: absolute;
+      width: 74%;
+      top: 50%;
+      left: 60%;
+      transform: translate(-55%, -50%);
+      height: 36vw;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      box-shadow: 0 4px 8px 0 $shadow-color, 0 6px 20px 0 $shadow-color;
+      transition: all 1s;
+      background: black;
+      img {
+        height: -webkit-fill-available;
+        transition: all 1s;
+        display: block;
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    &_small {
+      img {
+        position: absolute;
+        width: 30%;
+        top: 65%;
+        left: 15%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 8px 0 rgba(41, 18, 42, 0.2),
+          0 6px 20px 0 rgba(41, 18, 42, 0.2);
+      }
+    }
+  }
+
+  &__vertical_text {
+    position: absolute;
+    transform: translate(-50%, -5%);
+    &_box {
+      transform: rotate(-90deg);
+      font-family: "Edu TAS Beginner", cursive;
+      letter-spacing: 1px;
+      color: rgba($accent-color-text, 0.9);
+    }
+  }
+
+  &__content {
+    position: relative;
+    width: 50vw;
+    overflow-x: visible;
+  }
+
+  &__text {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    &__subheading {
+      text-transform: uppercase;
+      letter-spacing: 0.4rem;
+      hr {
+        display: inline-block;
+        width: 20rem;
+        margin-bottom: 4px;
+        border: none;
+        background: $accent-color-dark;
+        height: 1px;
+      }
+    }
+    &__heading h1 {
+      font-size: 6.5rem;
+      font-weight: 300;
+      font-family: "Headland One", serif;
+      margin-top: 1rem;
+      color: #222;
+      transform: translateX(-5px);
+    }
+
+    &__para {
+      margin-top: 2rem;
+      font-size: 1.4rem;
+      width: 80%;
+      color: darken($accent-color-dark, 10%);
+      margin-bottom: 5rem;
+      letter-spacing: 1px;
+    }
+
+    &__button a {
+      padding: 1.5rem 3rem;
+      text-decoration: none;
+      color: $accent-color-text;
+      border: 2px solid $accent-color-text;
+      margin-top: 6rem;
+      letter-spacing: 0.2rem;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.header_transformed_props {
+  opacity: 0.1;
+  transform: scaleX(1.5);
+}
+
+.mid {
+  background: linear-gradient(
+    to top,
+    rgba($accent-color-light, 0.8) 40%,
+    rgba($accent-color, 0.5)
+  );
+  font-family: "Sorts Mill Goudy", serif;
+  font-weight: 400;
+  position: relative;
+  padding: 10rem 0 20rem 0;
+
+  &__jewelry p {
+    font-size: 24rem;
+    color: rgba($accent-color, 0.6);
+    line-height: 15rem;
+    z-index: 1;
+  }
+
+  &__quote {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 3.5rem;
+    text-align: center;
+    color: #222;
+    font-weight: 100;
+    z-index: 100;
+    position: inherit;
+  }
+
+  &__selection p {
+    font-size: 24rem;
+    color: rgba($accent-color, 0.6);
+    text-align: right;
+    line-height: 15rem;
+    z-index: 1;
+  }
+
+  &__story {
+    text-align: center;
+    &__bigO {
+      font-size: 20rem;
+      height: 20rem;
+      position: absolute;
+      // left: 50%;
+      transform: scale(1) translateX(-50%);
+      background: url(/assets/images/img3.jpg);
+      -webkit-background-clip: text;
+      color: transparent;
+      cursor: pointer;
+      transition: .5s all;
+      overflow: hidden;
+    }
+    &__text {
+      font-size: 1.4rem;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      word-spacing: 99999px;
+      text-transform: uppercase;
+      line-height: normal;
+      color: $accent-color-text;
+    }
+
+    &__bigO:hover {
+      color: #055569;
+      transition: .5s all;
+      transform: scale(.99) translateX(-50%);
+    }
+  }
+}
+
+.ellipses{
+  // overflow: visible;
+  // display: inline-block;
+  // position: absolute;
+  // width: 75%;
+  transform: scale(1.4);
+  fill: none;
+  stroke: white;
+  stroke-miterlimit: 10;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+  svg{
+    stroke-dashoffset: 0;
+    stroke-dasharray:1440px;
+    transition: stroke-dashoffset 2s cubic-bezier(.38,.01,.34,.98);
+    // transition-delay: 5s;
+  }
+
+  .abc{
+    stroke-dashoffset:2880px;
+  }
+  }
+  
+  .products{
+    display: grid;
+    grid-template-columns: 45% 10% 5% 36% 4%;
+    grid-template-rows: 25% 20% 5% 30% 10%;
+    margin: 0 auto;
+    height: 130vh;
+    width: 65vw;
+    &__container{
+    background: linear-gradient(
+      to bottom,
+      rgba($accent-color-light, 0.8) 40%,
+      rgba($accent-color, 0.5)
+    );
+    padding: 20rem 0rem;
+    }
+
+    &__block{
+
+      // transform: scale(1.2);
+
+      &__img2{
+        background: url(/assets/images/payal5.jpeg);
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+      }
+
+      &__img3{
+        background: url(/assets/images/bracelet3.jpeg);
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+      }
+
+      &__img4{
+        background: url(/assets/images/chain.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+      }
+
+      &__item1{
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        border: none;
+      }
+      &__item2{
+        grid-row-start: 2;
+        grid-row-end: 5;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        position: relative;
+        overflow: hidden;
+      }
+      &__item3{
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 4;
+        grid-column-end: 6;
+      }
+      &__item4{
+        grid-row-start: 4;
+        grid-row-end: 6;
+        grid-column-start: 3;
+        grid-column-end: 5;
+      }
+    }
+  }
+
+  
