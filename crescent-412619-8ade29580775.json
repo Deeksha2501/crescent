@@ -1,0 +1,14 @@
+
+{
+  "type": "service_account",
+  "project_id": "crescent-412619",
+  "private_key_id": "8ade29580775937e8a05350960f145bd14b89cf6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDbvhxCISWrWSnu\n/EC95C8E+LbPjKZsbuHtCRf4YMsyBfITamgPPCSH5HS3WF8POcbA9VUx6tHlUI+W\ny31/IKXYCAugpei9INL8IGv9MUSlHcq9V/dNX4RjomNok7FoAVc0okW25xaaGIro\nQw/4V6wysNhQCzwJgA/4gmo7dRE5S4Irpv/DLMJ3LCOtF0qu0coO3vSPDGtjAHHI\nDjdNJqqjx39ZK9ithMTBU7X3HlbiIYkPOMlHcGolpE9iVUM+P+WY4QMaRy1KB1/Q\nOggr2h045eLDhJMptnWJoYT0s8MZrILiTaGrnOy7iPf1cN1Ig3t8K9A0BddFPrpn\n3bbXdUOlAgMBAAECggEAGJ57jwMks8ZZFt/nJv8+L1noLWeuK57erA5lQ5wgl9mn\nrfoxb2eHFjyHwRTjDZMlC/BQm7eZzY3RkIz64ffX7NS17Mk5wpq/WKUPRD41WSR1\n1vHYkLAfZoRGi+xkJ2ljClAV7HCGjTwrr+r3ipTUA5fhnFIt50iUQXznBwNOKzNv\nx976QgUOVOrKu/vg/wKHBtxXhSLeCG6tmYNsTUatYMOerlM8agr7UIPfbgwgCXfE\nLhjmGPpCnF46VRHmI4fCSRlimkpJ9YhbZvFHOOaTe3nWY/NfiMP25m4FzlM5z2Mq\np2Mz5wyNGt8dTzVufG54PE3O9A5WoJFfhMcREMzW/wKBgQD6ftd6+LSo7r/c429o\n0ob+Rh1cB0UCN9BCYhkbTqjDeKmSslKF5Cvo4a68r5GGRSt/GgY1iXsMd5z8Ku3K\nA+nr+AWRhRRaSFXqytWg0brS2sL2xm6xVTexPFfsi+rYiFz+G3KbZJ06LmBgpg9R\nSLh614+hymgrV7g0aYQi4jYSJwKBgQDgkkTapbW/RFx1sIx2E+JoTKO81/TD03WQ\n/2Hg9blO9xAROkNgPCDD51faaKudmgWVcSi8/gLoeZQ+lUWB3Auu4bN7E9ntCjlm\nZuedQ+uAeig53jzcwJZHHviqDntn0WljLpXgSFe+tGjTDux6qIsobrTba4GC5PdK\n+noT/SE3UwKBgGbwgTSzx+o0Uvw/KqV0/qy3u5D6G83Rie/9yDuEk63ghC8YwPjs\nz26gb+Jyc+ctvbY5x5twp/RzozutmJKQES07e25Vtgtz9nrKaAfyqEfGRqCK4ypU\nztIy7h7zUMszHqP+O5bIPiSOsmSFWX4Z2FYDB6+BMlW9cqF3SynatEW5AoGAI3ES\nKsuyRlBcozpMwKnctoc55CjU+T7bNBoJ8X32U+8L+xwN3BdBOIm/RLn2M7ZGIVKt\nkj4oaVYevk3CnX8D3QLD163HW/CcJHwjG5/HgAxHYvKe+lvum6TYq8YDVdwn3L5S\nawYfyvof/QdC7QzCgYwPQP3Tf7vxB0VGlPcDEf8CgYA55kKLH3xwZS/Apjsnkpnq\n+HnI/wrU2RBCuy3DxAvLjmyTuMF1L8FA9hhEK01y4zGydWu/3Hjo9m76fUq5L7oj\nO4CqZVMMBJe9xL+8vN205mnbCVVJkZ/2mnKRvUaj/az6ChI3Fd/tNZzNAo3DdfD+\nZVcCuhKS7kxPfpNXwHsYrQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "crescent@crescent-412619.iam.gserviceaccount.com",
+  "client_id": "112437820010616701158",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/crescent%40crescent-412619.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

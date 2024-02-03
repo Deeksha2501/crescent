@@ -248,8 +248,6 @@ body {
   stroke: white;
   stroke-miterlimit: 10;
   stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-  color: #fff;
   position: absolute;
   top: 0;
   left: 0;
@@ -262,18 +260,18 @@ body {
   z-index: 2;
 }
 .ellipses svg {
-  stroke-dashoffset: 0;
+  stroke-dashoffset: 1440px;
   stroke-dasharray: 1440px;
   transition: stroke-dashoffset 2s cubic-bezier(0.38, 0.01, 0.34, 0.98);
 }
 .ellipses .abc {
-  stroke-dashoffset: 2880px;
+  stroke-dashoffset: 0px;
 }
 
 .products {
   display: grid;
   grid-template-columns: 45% 10% 5% 36% 4%;
-  grid-template-rows: 25% 20% 5% 30% 10%;
+  grid-template-rows: 32% 10% 5% 36% 12%;
   margin: 0 auto;
   height: 130vh;
   width: 65vw;
@@ -282,8 +280,11 @@ body {
   background: linear-gradient(to bottom, rgba(226, 234, 240, 0.8) 40%, rgba(199, 222, 226, 0.5));
   padding: 20rem 0rem;
 }
+.products__block {
+  position: relative;
+}
 .products__block__img2 {
-  background: url(/assets/images/payal5.jpeg);
+  background: url(/assets/images/chain.jpg);
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -295,7 +296,7 @@ body {
   height: 100%;
 }
 .products__block__img4 {
-  background: url(/assets/images/chain.jpg);
+  background: url(/assets/images/payal5.jpeg);
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -312,7 +313,6 @@ body {
   grid-row-end: 5;
   grid-column-start: 1;
   grid-column-end: 2;
-  position: relative;
   overflow: hidden;
 }
 .products__block__item3 {
@@ -326,4 +326,127 @@ body {
   grid-row-end: 6;
   grid-column-start: 3;
   grid-column-end: 5;
+}
+
+.rectangle {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.rectangle-inner {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  --qodef-hover-border-color: currentColor;
+  background-repeat: no-repeat;
+  background-size: 0% 1px, 1px 0%;
+  background-position: 0 0, 100% 100%, 100% 100%, 0 0;
+  background-image: linear-gradient(0deg, var(--qodef-hover-border-color), var(--qodef-hover-border-color)), linear-gradient(0deg, var(--qodef-hover-border-color), var(--qodef-hover-border-color)), linear-gradient(0deg, var(--qodef-hover-border-color), var(--qodef-hover-border-color)), linear-gradient(0deg, var(--qodef-hover-border-color), var(--qodef-hover-border-color));
+  transition: background-size 1.2s cubic-bezier(0.54, 0.07, 0.11, 0.95);
+  pointer-events: none;
+}
+.rectangle .appear {
+  transition-delay: 0.5s;
+  background-size: 100% 1px, 1px 100%;
+}
+
+.frame {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.frame-inner {
+  width: calc(100% - 34px);
+  height: calc(100% - 22px);
+  position: relative;
+}
+.frame-inner:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(55, 45, 45, 0.59));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
+}
+.frame svg {
+  overflow: visible;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-miterlimit: 10;
+  stroke-width: 1;
+}
+.frame svg path {
+  stroke-dashoffset: 1720px;
+  stroke-dasharray: 1720px;
+  transition: stroke-dashoffset 2s cubic-bezier(0.38, 0.01, 0.34, 0.98);
+}
+.frame svg .appear {
+  stroke-dashoffset: 0px;
+}
+
+.category__header {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.category__header-text {
+  margin-top: 22rem;
+}
+.category__header-text h1 {
+  font-size: 7rem;
+  font-family: "Sorts Mill Goudy", serif;
+  text-align: center;
+  color: #222;
+  letter-spacing: 1px;
+}
+.category__header-box {
+  margin: 0 auto;
+  width: 60vw;
+  margin-top: 20rem;
+}
+.category__header-box-bg {
+  background: #e2eaee;
+  text-align: center;
+  height: 40rem;
+}
+.category__header-box__img-container {
+  display: inline-block;
+  width: 50rem;
+  text-align: left;
+}
+.category__header-box__img-container .appear {
+  width: 50rem;
+}
+.category__header-box-img {
+  display: inline-block;
+  overflow-x: clip;
+  width: 0rem;
+  transition: all 2s;
+}
+.category__header-box-img img {
+  margin-top: -10rem;
+  height: 60rem;
 }

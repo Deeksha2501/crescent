@@ -1,0 +1,18 @@
+<form action="/auth/forgot" method="POST">
+    <h3>Forgot Password</h3>
+    <%- include ("./messages") %>
+  
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email" />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Send me a password reset link</button>
+  
+    <div class="social go_to_login">
+        <a href="/auth/login">
+            <div class="go">
+                Remember your password? Login
+            </div>
+        </a>
+    </div>
+  </form>

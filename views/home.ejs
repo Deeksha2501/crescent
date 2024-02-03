@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="nav__block">
-      <a href="#"
+      <a href="/register"
         ><span class="material-symbols-outlined"> account_circle </span> My
         Account</a
       >
@@ -117,50 +117,67 @@
   </div>
 </div>
 <div class="products__container">
-<div class="products">
-  <!-- <h1>Our Products :</h1> -->
-  <div class="products__block products__block__item1">
-    <div class="products__block__content"></div>
-  </div>
+  <div class="products">
+    <!-- <h1>Our Products :</h1> -->
+    <div class="products__block products__block__item1">
+      <div class="products__block__content"></div>
+    </div>
 
-  <div class="products__block products__block__item2">
+    <div class="products__block products__block__item2">
       <span class="ellipses">
-    <svg
-      class="check"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      viewBox="0 0 568.4 532.7"
-      style="enable-background: new 0 0 568.4 532.7"
-      xml:space="preserve"
-    >
-      <path
-        d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0"
-        transform="rotate(-14.67 284.165 266.296)"
-      ></path>
-      <path
-        d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0"
-        transform="rotate(-60.877 284.171 266.32)"
-      ></path>
-      </svg>
-    </span>
-    <div class="products__block__img products__block__img2">
+        <svg
+          class="check"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 568.4 532.7"
+          style="enable-background: new 0 0 568.4 532.7"
+          xml:space="preserve"
+        >
+          <path
+            d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0"
+            transform="rotate(-14.67 284.165 266.296)"
+          ></path>
+          <path
+            d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0"
+            transform="rotate(-60.877 284.171 266.32)"
+          ></path>
+        </svg>
+      </span>
+      <div class="products__block__img products__block__img2"></div>
+      <div class="products__block__content"></div>
     </div>
-    <div class="products__block__content"></div>
-  </div>
 
-  <div class="products__block products__block__item3">
-    <div class="products__block__img products__block__img3">
+    <div class="products__block products__block__item3">
+      <div class="products__block__img products__block__img3"></div>
+      <span class="rectangle">
+        <span class="rectangle-inner"></span>
+      </span>
+      <div class="products__block__content"></div>
     </div>
-    <div class="products__block__content"></div>
-  </div>
 
-  <div class="products__block products__block__item4">
-    <div class="products__block__img products__block__img4">
+    <div class="products__block products__block__item4">
+      <div class="products__block__img products__block__img4"></div>
+      <span class="frame">
+        <span class="frame-inner">
+          <svg
+            class="qodef-svg--frame"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            viewBox="0 0 427.7 533.7"
+            style="enable-background: new 0 0 427.7 533.7"
+            xml:space="preserve"
+          >
+            <path class="frame-hidden"
+              d="M425.7,239.5c0-131-94.8-237.1-211.9-237.1S2,108.5,2,239.5c0,4.3,0.1,8.6,0.3,12.8v279.1h423.4V240.3h0  C425.7,240,425.7,239.7,425.7,239.5z"
+            ></path>
+          </svg>
+        </span>
+      </span>
+      <div class="products__block__content"></div>
     </div>
-    <div class="products__block__content"></div>
-  </div>
-  <!-- <span class="ellipses">
+    <!-- <span class="ellipses">
     <svg
       class="check"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -180,5 +197,29 @@
       ></path>
       </svg>
     </span> -->
+  </div>
 </div>
-</div>
+
+<!-- <div class="reviews">
+  <div class="void" id="void">
+    <div class="crop">
+    <ul id="card-list" style="--count: 6;">
+      <li><div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for generating highly dimensional, mostly numeric, tabular data</span></a></div></li>
+      <li><div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for generating highly dimensional, mostly numeric, tabular data</span></a></div></li>
+      <li><div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for generating highly dimensional, mostly numeric, tabular data</span></a></div></li>
+      <li><div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for generating highly dimensional, mostly numeric, tabular data</span></a></div></li>
+      <li><div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for generating highly dimensional, mostly numeric, tabular data</span></a></div></li>
+          <li><div class="card"><a href=""><span class="model-name">Gretel-ACTGAN</span><span>Model for generating highly dimensional, mostly numeric, tabular data</span></a></div></li>
+    </ul>
+    <div class="last-circle"></div>
+    <div class="second-circle"></div>
+    </div>
+    <div class="mask"></div>
+    <div class="center-circle"></div>
+  <div>
+</div> -->
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+  <input type="file" name="file" id="file">
+  <button type="submit" class="btn btn-primary btn-block">Register</button>
+</form>

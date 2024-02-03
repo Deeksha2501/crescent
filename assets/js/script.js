@@ -77,5 +77,57 @@ const observer = new IntersectionObserver((entries)=>{
   })
 })
 
-const elements = document.querySelectorAll('.check');
-elements.forEach(el =>observer.observe(el))
+const recobserver = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    console.log(entry);
+    if(entry.isIntersecting){
+      console.log("classes " , entry.target.classList)
+      console.log("added class");
+      entry.target.classList.add('appear');
+
+    }else {
+      console.log("removed class");
+      entry.target.classList.remove('appear');}
+  })
+})
+
+const frameobserver = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    console.log(entry);
+    if(entry.isIntersecting){
+      console.log("agigiffyik " , entry.target.classList)
+      console.log("added class");
+      entry.target.classList.add('appear');
+
+    }else {
+      console.log("removed class");
+      entry.target.classList.remove('appear');}
+  })
+})
+
+const catImgAnimationObserver = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    console.log(entry);
+    if(entry.isIntersecting){
+      console.log("agigiffyik " , entry.target.classList)
+      console.log("added class");
+      entry.target.classList.add('appear');
+
+    }else {
+      console.log("removed class");
+      entry.target.classList.remove('appear');
+    }
+  })
+})
+
+const e = document.querySelectorAll('.check');
+if(e)e.forEach(el =>observer.observe(el));
+
+const elements = document.querySelectorAll('.rectangle-inner');
+if(elements)elements.forEach(el =>recobserver.observe(el));
+
+const el = document.querySelectorAll('.frame-hidden');
+if(el)el.forEach(e =>frameobserver.observe(e));
+
+const catImgAnimation = document.querySelectorAll('.cat-img-animation');
+if(catImgAnimation)catImgAnimation.forEach(e =>catImgAnimationObserver.observe(e));

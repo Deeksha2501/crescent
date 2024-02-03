@@ -1,0 +1,33 @@
+<form action="/auth/login" method="POST">
+    <h3>Login Here</h3>
+    <%- include ("./messages") %>
+
+  
+    <div class="login_email form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter Email" />
+    </div>
+    <div class="login_password form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter Password"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+  
+    <div class="social">
+      <a href="/auth/register">
+        <div class="go">
+          New User?
+        </div>
+      </a>
+      <a href="/auth/forgot">
+        <div class="fb">
+          Reset Password
+        </div>
+      </a>
+    </div>
+  </form>
