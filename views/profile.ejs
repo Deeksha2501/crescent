@@ -1,0 +1,215 @@
+<%- include ("./navigation", {userName : null}) %>
+<div class="profile">
+  <div class="profile-info">
+    <div class="switcher">
+      <button
+        id="userProfile"
+        class="userProfile underline_animation_active"
+        onclick="openUserProfileTab()"
+      >
+        My Profile
+      </button>
+      <button
+        id="editProfile"
+        class="editProfile"
+        onclick="openEditProfileTab()"
+      >
+        Edit Profile
+      </button>
+      <button id="wishlist" class="wishlist" onclick="openWishlistTab()">
+        wishlist
+      </button>
+      <button id="orders" class="orders" onclick="openOrdersTab()">
+        Orders
+      </button>
+      <button id="address" class="address" onclick="openAddressTab()">
+        Address
+      </button>
+      <button id="logout" class="logout" onclick="logout()">Log Out</button>
+    </div>
+    <div class="profile-content">
+      <div id="userProfile-content" class="info-content">
+        <div class="userProfile-content-img">
+          <img src="/assets/images/user.png" alt="" />
+        </div>
+        <div class="userProfile-content-details">
+          <div>Name : Deeksha Sharma</div>
+          <div>Email : sharmadeeksha325@gmail.com</div>
+          <div>Contact number : 9027245775</div>
+        </div>
+      </div>
+      <div id="editProfile-content" class="info-content">
+        <form action="/user/updateProfile" method="POST">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" />
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+          <label for="contact">Contact Number</label>
+          <input type="number" id="contact" name="contact" />
+          <div class="form-group">
+            <input
+              type="checkbox"
+              name="agree-term"
+              id="agree-term"
+              class="agree-term"
+              onclick="showMerchantForm()"
+            />
+            <label for="agree-term" class="label-agree-term"
+              ><span><span></span></span>I want to register as
+              <a href="#" class="term-service">Merchant</a></label
+            >
+          </div>
+          <div class="merchant-form" id="merchant-form">
+            <label for="ownerName">Business Owner Name</label>
+            <input type="text" id="ownerName" name="ownerName" />
+            <label for="gst">GST Number</label>
+            <input type="number" id="gst" name="gst" />
+          </div>
+          <button type="submit">Update Profile</button>
+        </form>
+      </div>
+      <div id="wishlist-content" class="info-content">
+        <div class="heading">
+            <div class="img"></div>
+            <div class="name">Product Name</div>
+            <div class="price">Unit Price</div>
+            <div class="stock">Stock Status</div>
+            <div class="cart"></div>
+            <div class="remove"></div>
+
+        </div>
+        <div class="wishlist">
+            <div class="wishlist-item">
+                <div class="img">
+                    <img src="/assets/images/payal1.jpeg" alt="">
+                </div>
+                <div class="name">Small earrings</div>
+                <div class="price">48.00$</div>
+                <div class="stock">In Stock</div>
+                <div class="cart">
+                    <button>
+                        Add to cart
+                    </button>
+                </div>
+                <div class="remove"><i class="zmdi zmdi-close"></i></div>
+            </div>
+            <div class="wishlist-item">
+                <div class="img">
+                    <img src="/assets/images/payal1.jpeg" alt="">
+                </div>
+                <div class="name">Small earrings</div>
+                <div class="price">48.00$</div>
+                <div class="stock">In Stock</div>
+                <div class="cart">
+                    <button>
+                        Add to cart
+                    </button>
+                </div>
+                <div class="remove"><i class="zmdi zmdi-close"></i></div>
+            </div>
+        </div>
+      </div>
+      <div id="orders-content" class="info-content">hello orders</div>
+      <div id="address-content" class="info-content">hello Address</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var userProfileButton = document.getElementById("userProfile");
+  var editProfileButton = document.getElementById("editProfile");
+  var wishlistButton = document.getElementById("wishlist");
+  var ordersButton = document.getElementById("orders");
+  var addressButton = document.getElementById("address");
+  var userProfileContent = document.getElementById("userProfile-content");
+  var editProfileContent = document.getElementById("editProfile-content");
+  var wishlistContent = document.getElementById("wishlist-content");
+  var ordersContent = document.getElementById("orders-content");
+  var addressContent = document.getElementById("address-content");
+
+  function openUserProfileTab() {
+    removeContentOpacity();
+    removeUnderlineClass();
+    userProfileContent.style.opacity = 1;
+    userProfileButton.classList.add("underline_animation_active");
+    window.location = "/test#UserProfile";
+  }
+
+  function openEditProfileTab() {
+    removeContentOpacity();
+    removeUnderlineClass();
+    editProfileContent.style.opacity = 1;
+    editProfileButton.classList.add("underline_animation_active");
+    window.location = "/test#EditProfile";
+  }
+
+  function openWishlistTab() {
+    removeContentOpacity();
+    removeUnderlineClass();
+    wishlistContent.style.opacity = 1;
+    wishlistButton.classList.add("underline_animation_active");
+    window.location = "/test#Wishlist";
+  }
+
+  function openOrdersTab() {
+    removeContentOpacity();
+    removeUnderlineClass();
+    ordersContent.style.opacity = 1;
+    ordersButton.classList.add("underline_animation_active");
+    window.location = "/test#Orders";
+  }
+
+  function openAddressTab() {
+    removeContentOpacity();
+    removeUnderlineClass();
+    addressContent.style.opacity = 1;
+    addressButton.classList.add("underline_animation_active");
+    window.location = "/test#Address";
+  }
+
+  function removeContentOpacity() {
+    userProfileContent.style.opacity = 0;
+    editProfileContent.style.opacity = 0;
+    wishlistContent.style.opacity = 0;
+    ordersContent.style.opacity = 0;
+    addressContent.style.opacity = 0;
+  }
+
+  function removeUnderlineClass() {
+    wishlistButton.classList.remove("underline_animation_active");
+    userProfileButton.classList.remove("underline_animation_active");
+    editProfileButton.classList.remove("underline_animation_active");
+    ordersButton.classList.remove("underline_animation_active");
+    addressButton.classList.remove("underline_animation_active");
+  }
+
+  function logout() {
+    window.location = "/auth/logout";
+  }
+
+  window.onload = (event) => {
+    let hash = window.location.hash.slice(1);
+    hash = hash[0].toUpperCase() + hash.slice(1);
+    console.log({ hash });
+    let tab = `open${hash}Tab()`;
+    eval(tab);
+  };
+
+  function showMerchantForm() {
+    let isInputChecked = document.getElementById("agree-term").checked;
+    let merchantForm = document.getElementById("merchant-form");
+    console.log(document.getElementById("agree-term").checked);
+    if (isInputChecked) {
+      merchantForm.style.display = "block";
+    } else {
+      merchantForm.style.display = "none";
+    }
+  }
+
+  //   window.addEventListener("load", (event)){
+
+  //   }
+  //   openUserProfileTab();
+</script>

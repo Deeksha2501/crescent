@@ -1,0 +1,21 @@
+<form action="/admin/addProducts" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" id="abc" placeholder="name">
+    <input type="file" name="file" id="file">
+    <div class="list-choice categories">
+        <div class="list-choice-title">categories</div>
+        <div class="list-choice-objects">
+          <% for ( var i = 0; i < categories.length; i++ ) { %>
+          <label>
+            <input type="radio" name="categoryId" value="<%=categories[ i ]._id %>" />
+            <span><%= categories[ i ].name %></span>
+          </label>
+          <% } %>
+        </div>
+      </div>
+      <input type="number" name="countInStock" id="" placeholder="countInStock">
+      <input type="text" name="description" placeholder="descriptiom">
+      <input type="number" name="price" placeholder="price">
+      <input type="number" name="discount">
+
+    <button type="submit" class="btn btn-primary btn-block">submit</button>
+  </form>

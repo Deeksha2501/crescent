@@ -52,7 +52,7 @@ function gfg_Run() {
   }, 3000);
 }
 
-gfg_Run();
+// gfg_Run();
 
 function scrollImg(scrollValue) {
   header_image_container.scrollBy({
@@ -113,10 +113,11 @@ const catImgAnimationObserver = new IntersectionObserver((entries)=>{
       console.log("added class");
       entry.target.classList.add('appear');
 
-    }else {
-      console.log("removed class");
-      entry.target.classList.remove('appear');
     }
+    // else {
+    //   console.log("removed class");
+    //   entry.target.classList.remove('appear');
+    // }
   })
 })
 

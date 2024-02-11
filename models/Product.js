@@ -14,14 +14,9 @@ const ProductSchema = new mongoose.Schema(
     images: [
       {
         type: String,
-        required: true,
       },
     ],
-    brand: {
-      type: String,
-      required: true,
-    },
-    category: {
+    categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
@@ -40,15 +35,13 @@ const ProductSchema = new mongoose.Schema(
     },
     discount: {
       type: Number,
-      required: true,
     },
     currency: {
-      type: mongoose.Schema.Types.code,
+      type: mongoose.Schema.Types.String,
       ref: "Currency",
     },
     rating: {
       type: Number,
-      required: true,
     },
     reviews: [
       {

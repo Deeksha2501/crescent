@@ -7,21 +7,8 @@ const jwt = require("jsonwebtoken");
 const JWT_KEY = "jwtactive987";
 const JWT_RESET_KEY = "jwtreset987";
 require("dotenv").config();
-const { initializeApp } =  require("firebase/app");
-const multer = require("multer");
-const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require("firebase/storage");
-
-// const config = require('./config/firebase');
-//Initialize a firebase application
-// const app = initializeApp(config.firebaseConfig);
-
-// Initialize Cloud Storage and get a reference to the service
-const storage = getStorage();
-
-const upload = multer({ storage: multer.memoryStorage() });
 
 const { sendMail } = require("../utils/genUtils");
-// const {uploadFile} = require('../utils/fileUploader');
 
 //------------ User Model ------------//
 const User = require("../models/User");
@@ -346,9 +333,9 @@ exports.loginHandle = (req, res, next) => {
   console.log(req.body);
   try {
     passport.authenticate("local", {
-      successRedirect: "/dashboard",
+      successRedirect: "/",
       failureRedirect: "/auth/login",
-      failureFlash: false,
+      failureFlash: true,
     })(req, res, next);
   } catch (err) {
     console.log(err);
@@ -358,50 +345,9 @@ exports.loginHandle = (req, res, next) => {
 
 //------------ Logout Handle ------------//
 exports.logoutHandle = (req, res) => {
-  try {
-    req.logout();
+  req.logout((err) => {
+    if (err) res.render("error_500");
     req.flash("success_msg", "You are logged out");
     res.redirect("/auth/login");
-  } catch (err) {
-    console.log(err);
-    res.render("error_500");
-  }
+  });
 };
-
-exports.uploadHandle = async (req, res)=>{
-    try{
-        const dateTime = giveCurrentDateTime();
-
-        const storageRef = ref(storage, `files/${req.file.originalname + "       " + dateTime}`);
-
-        // Create file metadata including the content type
-        const metadata = {
-            contentType: req.file.mimetype,
-        };
-
-        // Upload the file in the bucket storage
-        const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
-        //by using uploadBytesResumable we can control the progress of uploading like pause, resume, cancel
-
-        // Grab the public url
-        const downloadURL = await getDownloadURL(snapshot.ref);
-
-        console.log('File successfully uploaded.');
-        return res.send({
-            message: 'file uploaded to firebase storage',
-            name: req.file.originalname,
-            type: req.file.mimetype,
-            downloadURL: downloadURL
-        })
-    }catch(err){
-        res.send(err);
-    }
-}
-
-const giveCurrentDateTime = () => {
-    const today = new Date();
-    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const dateTime = date + ' ' + time;
-    return dateTime;
-}

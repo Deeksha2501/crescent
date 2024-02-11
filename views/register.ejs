@@ -1,49 +1,92 @@
-<div class="register_div">
-    <form class="register_form" action="/auth/register" method="POST" >
-      <h3>Register Here</h3>
-    <%- include ("./messages") %>
+<section class="signup">
+  <div class="container">
+  <a class="cross" href="/"><i class="zmdi zmdi-close"></i></a>
+    <div class="signup-content">
+      <div class="signup-form">
+        <h2 class="form-title">Sign up</h2>
+        <%- include ("./messages") %>
+        <form
+          action="/auth/register"
+          method="POST"
+          class="register-form"
+          id="register-form"
+        >
+          <div class="form-group">
+            <label for="name"
+              ><i class="zmdi zmdi-account material-icons-name"></i
+            ></label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              placeholder="Enter Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="zmdi zmdi-email"></i></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+            <input
+              ttype="password"
+              id="password2"
+              name="password2"
+              placeholder="Confirm Password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="checkbox"
+              name="agree-term"
+              id="agree-term"
+              class="agree-term"
+            />
+            <label for="agree-term" class="label-agree-term"
+              ><span><span></span></span>I agree all statements in
+              <a href="#" class="term-service">Terms of service</a></label
+            >
+          </div>
+          <div class="form-group form-button">
+            <input
+              type="submit"
+              name="signup"
+              id="signup"
+              class="form-submit"
+              value="Register"
+            />
+          </div>
+        </form>
+        <a href="/auth/login" class="signup-image-link">I am already member</a>
+      </div>
+      <div class="signup-image">
+        <figure>
+          <img src="/assets/images/login.jpeg" alt="sing up image" />
+        </figure>
+        
+      </div>
+    </div>
+  </div>
+</section>
 
-    
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input
-          type="name"
-          id="name"
-          name="name"
-          placeholder="Enter Name"
-          value="<%= typeof name != 'undefined' ? name : '' %>"
-        />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter Email"
-          value="<%= typeof email != 'undefined' ? email : '' %>"
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter Password"
-          value="<%= typeof password != 'undefined' ? password : '' %>"
-        />
-      </div>
-      <div class="form-group">
-        <label for="password2">Confirm Password</label>
-        <input
-          type="password"
-          id="password2"
-          name="password2"
-          placeholder="Confirm Password"
-          value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-        />
-      </div>
 <!--     
       <div class="form-group">
          <input type="radio" id="teacher" name="role" value="teacher" />
@@ -121,6 +164,53 @@
         <p id="file-upload-name"></p>
       </div>
      -->
+
+<!-- <div class="register_div">
+    <form class="register_form" action="/auth/register" method="POST" >
+      <h3>Register Here</h3>
+    <%- include ("./messages") %>
+
+    
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="name"
+          id="name"
+          name="name"
+          placeholder="Enter Name"
+          value="<%= typeof name != 'undefined' ? name : '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter Email"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          placeholder="Confirm Password"
+          value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+        />
+      </div>
       <button type="submit" class="btn btn-primary btn-block">Register</button>
     
       <div class="social go_to_login">
@@ -131,4 +221,4 @@
         </a>
       </div>
     </form>
-    </div>
+    </div> -->

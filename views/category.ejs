@@ -1,16 +1,110 @@
-<section class="category">
-<div class="category__header">
-    <div class="category__header-text">
+<section class="category-section">
+  <%- include ("./navigation", {userName : null}) %>
+  <div class="category">
+    <div class="category__header">
+      <div class="category__header-text">
         <h1>Category</h1>
-    </div>
-    <div class="category__header-box">
+      </div>
+      <div class="category__header-box">
         <div class="category__header-box-bg">
-            <div class="category__header-box__img-container">
+          <div class="category__header-box__img-container">
             <div class="category__header-box-img cat-img-animation">
-                <img src="/assets/images/category-chain22-removebg-preview (4).jpg" alt="">
+              <img src="/assets/images/category-chain.jpg" alt="" />
             </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="products_block">
+      <div class="products_block__container">
+        <% for(let i=0 ; i < products.length ; i++){ %> 
+          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
+          <div class="products_block__card_img">
+            <img src="<%=products[i].featuredImage %>" alt="" />
+            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
+            <a href="<%= url %>">
+              <span class="material-symbols-outlined"> favorite </span>
+            </a>
+          </div>
+          <div class="products_block__card_details">
+            <div class="products_block__card_details_name"><%=products[i].name %></div>
+            <div class="products_block__card_details_price">$<%=products[i].price %></div>
+          </div>
+        </div>
+        <% } %>
+
+        <% for(let i=0 ; i < products.length ; i++){ %> 
+          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
+          <div class="products_block__card_img">
+            <img src="<%=products[i].featuredImage %>" alt="" />
+            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
+            <a href="<%= url %>">
+              <span class="material-symbols-outlined"> favorite </span>
+            </a>
+          </div>
+          <div class="products_block__card_details">
+            <div class="products_block__card_details_name"><%=products[i].name %></div>
+            <div class="products_block__card_details_price">$<%=products[i].price %></div>
+          </div>
+        </div>
+        <% } %>
+
+        <% for(let i=0 ; i < products.length ; i++){ %> 
+          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
+          <div class="products_block__card_img">
+            <img src="<%=products[i].featuredImage %>" alt="" />
+            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
+            <a href="<%= url %>">
+              <span class="material-symbols-outlined"> favorite </span>
+            </a>
+          </div>
+          <div class="products_block__card_details">
+            <div class="products_block__card_details_name"><%=products[i].name %></div>
+            <div class="products_block__card_details_price">$<%=products[i].price %></div>
+          </div>
+        </div>
+        <% } %>
+
+        <% for(let i=0 ; i < products.length ; i++){ %> 
+          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
+          <div class="products_block__card_img">
+            <img src="<%=products[i].featuredImage %>" alt="" />
+            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
+            <a href="<%= url %>">
+              <span class="material-symbols-outlined"> favorite </span>
+            </a>
+          </div>
+          <div class="products_block__card_details">
+            <div class="products_block__card_details_name"><%=products[i].name %></div>
+            <div class="products_block__card_details_price">$<%=products[i].price %></div>
+          </div>
+        </div>
+        <% } %>
+
+        <!-- <div class="card products_block__card">
+          <div class="card products_block__card">
+            <div class="products_block__card_img">
+              <img src="/assets/images/p1.jpeg" alt="" />
+            </div>
+            <div class="products_block__card_details">
+              <div class="products_block__card_details_name">Silver chain</div>
+              <div class="products_block__card_details_price">$222</div>
+            </div>
+          </div>
+        </div>
+        <div class="card products_block__card">
+          <div class="card products_block__card">
+            <div class="products_block__card_img">
+              <img src="/assets/images/p3.jpeg" alt="" />
+            </div>
+            <div class="products_block__card_details">
+              <div class="products_block__card_details_name">Silver chain</div>
+              <div class="products_block__card_details_price">$222</div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
     </div>
-</div>
+  </div>
 </section>
