@@ -2,7 +2,7 @@
   "name": "chitresh2",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "sass-watch": "sass --no-source-map --watch assets/styles/main.scss assets/css/main.css",
     "nodemon-watch": "nodemon server.js",
