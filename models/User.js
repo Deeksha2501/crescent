@@ -15,10 +15,27 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isMerchant: {
+    contactNumber: {
+      type: Number,
+    },
+   isMerchant : {
       type: Boolean,
       required: true,
       default: false
+    },
+    isVerified : {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    businessOwnerName: {
+      type: String
+    },
+    gstNumber: {
+      type: Number
+    },
+    panCardDoc: {
+      type: String
     },
     wishlist: [
       {
@@ -26,6 +43,12 @@ const UserSchema = new mongoose.Schema(
         ref: "Product",
       },
     ],
+    // cart: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Product",
+    //   },
+    // ],
   },
   { timestamps: true }
 );

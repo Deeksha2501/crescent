@@ -27,6 +27,7 @@ exports.sendMail = async (
 
   var accessToken;
   oauth2Client.refreshAccessToken( (error, tokens) => {
+    console.log("hello")
     if( !error ){
         console.log({tokens});
          accessToken = tokens.access_token;

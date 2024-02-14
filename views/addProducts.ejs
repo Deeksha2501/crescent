@@ -1,21 +1,176 @@
-<form action="/admin/addProducts" method="POST" enctype="multipart/form-data">
-    <input type="text" name="name" id="abc" placeholder="name">
-    <input type="file" name="file" id="file">
-    <div class="list-choice categories">
-        <div class="list-choice-title">categories</div>
-        <div class="list-choice-objects">
-          <% for ( var i = 0; i < categories.length; i++ ) { %>
-          <label>
-            <input type="radio" name="categoryId" value="<%=categories[ i ]._id %>" />
-            <span><%= categories[ i ].name %></span>
-          </label>
-          <% } %>
-        </div>
-      </div>
-      <input type="number" name="countInStock" id="" placeholder="countInStock">
-      <input type="text" name="description" placeholder="descriptiom">
-      <input type="number" name="price" placeholder="price">
-      <input type="number" name="discount">
+<%- include ("./navigation", {userName : userName}) %>
 
-    <button type="submit" class="btn btn-primary btn-block">submit</button>
-  </form>
+<section class="addProducts">
+  <div class="container">
+    <div class="addProducts-content">
+      <div class="addProducts-image">
+        <figure>
+          <img src="/assets/images/products.jpeg" alt="Product image" />
+        </figure>
+      </div>
+
+      <div class="addProducts-form">
+        <h2 class="form-title">Add Product</h2>
+        <%- include ("./messages") %>
+        <form
+          action="/admin/addProducts"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              name="productName"
+              id="productName"
+              placeholder="Product Name"
+            />
+            <label for="productName">Product Name</label>
+          </div>
+          <div class="form-group">
+            <input type="number" name="price" placeholder="Price" id="price" />
+            <label for="price">Price</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              name="discountPrice"
+              placeholder="Discount Price"
+              id="discountPrice"
+            />
+            <label for="discountPrice">Discount Price</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              name="countInStock"
+              id="countInStock"
+              placeholder="Count In Stock"
+            />
+            <label for="countInStock">Count In Stock</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              id="weight"
+              name="weight"
+              placeholder="Weight(in gm)"
+            />
+            <label for="weight">Weight(in gm)</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              id="length"
+              name="length"
+              placeholder="Length(in cm)"
+            />
+            <label for="length">Length(in cm)</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="metal"
+              name="metalDescription"
+              placeholder="Metal Description"
+            />
+            <label for="metal">Metal Description</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="purity" name="purity" placeholder="Purity" />
+            <label for="purity">Purity</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="warranty"
+              name="warranty"
+              placeholder="Warranty Information"
+            />
+            <label for="warranty">Warranty Information</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="stones" name="stones" placeholder="Stones" />
+            <label for="stones">Stones </label>
+          </div>
+          <div class="form-group">
+            <textarea
+              oninput="auto_grow(this)"
+              name="description"
+              id="description"
+              placeholder="Description"
+            ></textarea>
+            <label for="description" class="descp">Description </label>
+          </div>
+
+          <div class="options">
+            <p>Category :</p>
+            <% for ( var i = 0; i < categories.length; i++ ) { %>
+            <input
+              name="option"
+              type="radio"
+              id="<%= categories[ i ].name %>"
+              class="hide"
+              value="<%=categories[ i ]._id %>"
+              checked
+            />
+            <label for="<%= categories[ i ].name %>"
+              ><%= categories[ i ].name %></label
+            >
+            <% } %>
+          </div>
+          <div class="form-group">
+            <label for="images" class="drop-container" id="dropcontainer">
+              <span class="drop-title">Drop Product Image here</span>
+              or
+              <input
+                type="file"
+                name="file"
+                id="images"
+                accept="image/*"
+                required
+              />
+            </label>
+          </div>
+          <div class="form-group upload-submit">
+            <button type="submit" class="btn btn-primary btn-block">
+              submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function auto_grow(element) {
+    element.style.height = "40px";
+    element.style.height = element.scrollHeight + "px";
+  }
+
+  const dropContainer = document.getElementById("dropcontainer");
+  const fileInput = document.getElementById("images");
+
+  dropContainer.addEventListener(
+    "dragover",
+    (e) => {
+      // prevent default to allow drop
+      e.preventDefault();
+    },
+    false
+  );
+
+  dropContainer.addEventListener("dragenter", () => {
+    dropContainer.classList.add("drag-active");
+  });
+
+  dropContainer.addEventListener("dragleave", () => {
+    dropContainer.classList.remove("drag-active");
+  });
+
+  dropContainer.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropContainer.classList.remove("drag-active");
+    fileInput.files = e.dataTransfer.files;
+  });
+</script>

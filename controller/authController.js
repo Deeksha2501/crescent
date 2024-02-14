@@ -351,3 +351,4 @@ exports.logoutHandle = (req, res) => {
     res.redirect("/auth/login");
   });
 };
+

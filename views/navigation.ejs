@@ -48,14 +48,14 @@
       >
     </div>
     <div class="nav__block">
-      <a href="/auth/register"
-        ><i class="zmdi zmdi-account-o"></i> My
-        <%= userName %></a
+      <a href="#"
+        ><i class="zmdi zmdi-shopping-cart"></i>My Cart</a
       >
     </div>
     <div class="nav__block">
-      <a href="#"
-        ><i class="zmdi zmdi-shopping-cart"></i>My Cart</a
+      <a href="<%= userName === null ? '/auth/login' : '/user/profile#UserProfile' %>"
+        ><i class="zmdi zmdi-account-o"></i>
+        <%= userName === null ? 'Login/Register' : `Hi ${userName.split(" ")[0]}` %></a
       >
     </div>
   </nav>

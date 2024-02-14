@@ -1,5 +1,5 @@
 <section class="category-section">
-  <%- include ("./navigation", {userName : null}) %>
+  <%- include ("./navigation", {userName : userName}) %>
   <div class="category">
     <div class="category__header">
       <div class="category__header-text">
@@ -24,6 +24,9 @@
             <% let url = `/user/addToWishlist/${products[i]._id}`; %>
             <a href="<%= url %>">
               <span class="material-symbols-outlined"> favorite </span>
+            </a>
+            <a class="cart" href="<%=`/user/addToCart/${products[i]._id}`%>">
+              <span>Add To Cart</span>
             </a>
           </div>
           <div class="products_block__card_details">

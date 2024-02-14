@@ -583,6 +583,32 @@ body {
   color: #097f9d;
   padding: 0.3rem;
 }
+.category .products_block__card_img .cart {
+  border-radius: unset;
+  width: 100%;
+  top: 100%;
+  right: 0;
+  height: 6rem;
+  box-shadow: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+  background: rgba(255, 255, 255, 0.7098039216);
+}
+.category .products_block__card_img .cart span {
+  font-family: Poppins, sans-serif;
+  text-transform: uppercase;
+  color: #141414;
+  font-size: 12px;
+  letter-spacing: 0.3rem;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(90deg, currentColor 0, currentColor 100%);
+  background-position: 0 calc(100% - 3px);
+  background-size: 0 1px;
+  transition: background-size 0.5s cubic-bezier(0.25, 0.46, 0.35, 0.94), color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
 .category .products_block__card_details {
   display: flex;
   color: #141414;
@@ -604,7 +630,13 @@ body {
 }
 
 .products_block__card:hover .products_block__card_img img {
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+.products_block__card:hover .cart {
+  top: calc(100% - 6rem);
+}
+.products_block__card .cart:hover span {
+  background-size: 100% 1px;
 }
 
 .product {
@@ -953,10 +985,10 @@ body {
 }
 
 .info-content {
-  display: flex;
   gap: 5rem;
   position: absolute;
   opacity: 0;
+  display: none;
   transition: opacity 0.3s;
 }
 .info-content .description-content-left,
@@ -1431,7 +1463,9 @@ body {
   font-weight: bold;
 }
 .signup .agree-term,
-.sign-in .agree-term {
+.signup .is-merchant,
+.sign-in .agree-term,
+.sign-in .is-merchant {
   display: inline-block;
   width: auto;
 }
@@ -1483,7 +1517,9 @@ body {
   color: green;
 }
 .signup .label-agree-term,
-.sign-in .label-agree-term {
+.signup .label-is-merchant,
+.sign-in .label-agree-term,
+.sign-in .label-is-merchant {
   position: relative;
   top: 0%;
   transform: translateY(0);
@@ -1719,11 +1755,54 @@ body {
   position: relative;
   flex-basis: 80%;
 }
-.profile-content .userProfile-content-details {
+.profile-content #userProfile-content {
+  flex-direction: column;
+  width: 100%;
+}
+.profile-content #userProfile-content .userContent {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+.profile-content #userProfile-content .userProfile-content-details {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 1rem auto;
+  margin: 1rem;
+}
+.profile-content #userProfile-content .adminControls {
+  display: flex;
+  justify-content: center;
+}
+.profile-content #userProfile-content .adminControls .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+.profile-content #userProfile-content .adminControls .buttons button {
+  background: #141414;
+  outline: none;
+  border: none;
+  padding: 8px 25px;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+.profile-content #userProfile-content .adminControls .buttons button a {
+  color: #fff;
+  line-height: 2.5rem;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(90deg, currentColor 0, currentColor 100%);
+  background-position: 0 calc(100% - 2px);
+  background-size: 0 1px;
+  transition: background-size 0.5s cubic-bezier(0.25, 0.46, 0.35, 0.94), color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
+  text-decoration: none;
+}
+.profile-content #userProfile-content .adminControls .buttons button:hover a {
+  background-size: 100% 1px;
 }
 .profile-content #editProfile-content {
   color: #2d2d2d;
@@ -1731,6 +1810,7 @@ body {
   line-height: 2.5rem;
   font-size: 1.4rem;
   width: 100%;
+  padding-bottom: 6rem;
 }
 .profile-content #editProfile-content form {
   width: 100%;
@@ -1746,16 +1826,19 @@ body {
   background: transparent;
   padding: 1.3rem;
   margin-bottom: 2rem;
+  outline: none;
 }
 .profile-content #editProfile-content .form-group {
   margin-top: 2rem;
 }
-.profile-content #editProfile-content .agree-term {
+.profile-content #editProfile-content .agree-term,
+.profile-content #editProfile-content .is-merchant {
   display: inline;
   width: fit-content;
   height: 2.5rem;
 }
-.profile-content #editProfile-content .label-agree-term {
+.profile-content #editProfile-content .label-agree-term,
+.profile-content #editProfile-content .label-is-merchant {
   display: inline-block;
 }
 .profile-content #editProfile-content .merchant-form {
@@ -1773,6 +1856,64 @@ body {
   font-weight: 400;
   text-transform: uppercase;
   font-family: inherit;
+}
+.profile-content #editProfile-content .uploaded-doc a {
+  color: #141414;
+}
+.profile-content #editProfile-content input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: rgb(118, 118, 118);
+  padding: 5px;
+  background: #fff;
+  border: 1px solid rgb(118, 118, 118);
+}
+.profile-content #editProfile-content input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #141414;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.profile-content #editProfile-content input[type=file]::file-selector-button:hover {
+  background: #141414;
+}
+.profile-content #editProfile-content .drop-container {
+  margin-top: 2rem;
+  width: 100%;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 1px dashed rgb(118, 118, 118);
+  color: rgb(118, 118, 118);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.profile-content #editProfile-content .drop-container:hover {
+  background: #fbfbfb;
+  border-color: #111;
+}
+.profile-content #editProfile-content .drop-container:hover .drop-title {
+  color: #222;
+}
+.profile-content #editProfile-content .drop-title {
+  color: #555;
+  text-align: center;
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
+}
+.profile-content #editProfile-content .drop-container.drag-active {
+  background: #eee;
+  border-color: #111;
+}
+.profile-content #editProfile-content .drop-container.drag-active .drop-title {
+  color: #222;
 }
 .profile-content #wishlist-content {
   font-family: inherit;
@@ -1856,4 +1997,254 @@ body {
   font-weight: 400;
   text-transform: uppercase;
   font-family: inherit;
+}
+
+.addProducts {
+  height: 80vh;
+}
+.addProducts .container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+.addProducts-content {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  max-width: 140rem;
+  margin: 0 auto;
+  height: 70vh;
+  gap: 5rem;
+  box-shadow: 0px 2px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+}
+.addProducts-content h2 {
+  line-height: 1.66;
+  padding: 0;
+  font-weight: 400;
+  color: #222;
+  font-size: 36px;
+  text-transform: uppercase;
+  margin: 3rem 0;
+}
+.addProducts-content .form-group {
+  position: relative;
+}
+.addProducts-content .form-group input:placeholder-shown + label {
+  top: 3px;
+  opacity: 0;
+  right: 100%;
+  transform: translateX(100%);
+  width: max-content;
+}
+.addProducts-content .form-group textarea:placeholder-shown + label {
+  top: 3px;
+  opacity: 0;
+}
+.addProducts-content label {
+  position: absolute;
+  padding: 1.3rem;
+  display: block;
+  line-height: 13px;
+  font-size: 13px;
+  top: 3px;
+  right: 0px;
+  width: max-content;
+  transition: all 0.5s ease-out;
+  z-index: 1;
+  cursor: pointer;
+}
+.addProducts-content .descp {
+  width: unset;
+  right: unset;
+  top: -5px;
+  font-size: 12px;
+}
+.addProducts-content input {
+  outline: none;
+  width: 100%;
+  z-index: 2;
+  vertical-align: top;
+  border-width: 0 0 1px 0;
+  cursor: pointer;
+  background: transparent;
+  padding: 1.3rem;
+  margin-bottom: 2rem;
+  font-family: Poppins, sans-serif;
+  font-size: 13px;
+}
+.addProducts-content input::-webkit-outer-spin-button,
+.addProducts-content input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.addProducts-content input[type=number] {
+  -moz-appearance: textfield;
+}
+.addProducts-image {
+  flex-basis: 40%;
+}
+.addProducts-image figure {
+  width: 100%;
+  height: 100%;
+}
+.addProducts-image img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.addProducts .category-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.addProducts-form {
+  flex-basis: 60%;
+  overflow-y: scroll;
+  font-family: Poppins, sans-serif;
+}
+.addProducts-form form {
+  width: 90%;
+}
+.addProducts-form textarea {
+  margin-top: 2rem;
+  resize: none;
+  overflow: hidden;
+  height: 46px;
+  max-height: 150px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(118, 118, 118);
+  padding: 1.3rem;
+  font-family: inherit;
+  margin-bottom: 2rem;
+}
+.addProducts-form button {
+  margin-top: 5rem;
+  background: #141414;
+  outline: none;
+  border: none;
+  padding: 10px 30px;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family: inherit;
+  margin-bottom: 5rem;
+}
+.addProducts-form input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: rgb(118, 118, 118);
+  padding: 5px;
+  background: #fff;
+  border: 1px solid rgb(118, 118, 118);
+}
+.addProducts-form input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #141414;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.addProducts-form input[type=file]::file-selector-button:hover {
+  background: #141414;
+}
+.addProducts-form .drop-container {
+  margin-top: 2rem;
+  width: 100%;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 1px dashed rgb(118, 118, 118);
+  color: rgb(118, 118, 118);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.addProducts-form .drop-container:hover {
+  background: #fbfbfb;
+  border-color: #111;
+}
+.addProducts-form .drop-container:hover .drop-title {
+  color: #222;
+}
+.addProducts-form .drop-title {
+  color: #555;
+  text-align: center;
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
+}
+.addProducts-form .drop-container.drag-active {
+  background: #eee;
+  border-color: #111;
+}
+.addProducts-form .drop-container.drag-active .drop-title {
+  color: #222;
+}
+.addProducts-form .upload-submit {
+  text-align: end;
+}
+.addProducts-form .options {
+  position: relative;
+  color: #767676;
+  font-family: inherit;
+  padding: 1.3rem;
+}
+.addProducts-form .options p {
+  font-size: 13px;
+  text-align: left;
+  color: #767676;
+}
+.addProducts-form .options input {
+  display: none;
+}
+.addProducts-form .options > label {
+  display: inline-block;
+  position: relative;
+  margin-right: 16px;
+  padding-left: 24px;
+  cursor: pointer;
+}
+.addProducts-form .options > label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 0;
+  top: 50%;
+  margin-top: -8px;
+  border: 1px solid #767676;
+  border-radius: 8px;
+}
+.addProducts-form .options > label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 8px;
+  margin-top: 0;
+  background: #000000;
+  border-radius: 4px;
+  transition: 0.2s ease-in-out;
+}
+.addProducts-form .options :checked + label {
+  color: #000000;
+}
+.addProducts-form .options :checked + label:after {
+  height: 8px;
+  width: 8px;
+  margin-top: -4px;
+  left: 4px;
 }

@@ -1,5 +1,85 @@
-<form action="/admin/addCategories" method="POST" enctype="multipart/form-data">
+<!-- <form action="/admin/addCategories" method="POST" enctype="multipart/form-data">
     <input type="text" name="name" id="abc">
     <input type="file" name="file" id="file">
     <button type="submit" class="btn btn-primary btn-block">submit</button>
-  </form>
+  </form> -->
+
+  <%- include ("./navigation", {userName : userName}) %>
+
+<section class="addProducts">
+  <div class="container">
+    <div class="addProducts-content">
+      <div class="addProducts-image">
+        <figure>
+          <img src="/assets/images/catt.jpeg" alt="Products image" />
+        </figure>
+      </div>
+
+      <div class="addProducts-form category-form">
+        <h2 class="form-title">Add Category</h2>
+        <%- include ("./messages") %>
+        <form
+          action="/admin/addCategories"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              name="categoryName"
+              id="categoryName"
+              placeholder="Category Name"
+            />
+            <label for="categoryName">Category Name</label>
+          </div>
+          <div class="form-group">
+            <label for="images" class="drop-container" id="dropcontainer">
+              <span class="drop-title">Drop Product Image here</span>
+              or
+              <input
+                type="file"
+                name="file"
+                id="images"
+                accept="image/*"
+                required
+              />
+            </label>
+          </div>
+          <div class="form-group upload-submit">
+            <button type="submit" class="btn btn-primary btn-block">
+              submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const dropContainer = document.getElementById("dropcontainer");
+  const fileInput = document.getElementById("images");
+
+  dropContainer.addEventListener(
+    "dragover",
+    (e) => {
+      // prevent default to allow drop
+      e.preventDefault();
+    },
+    false
+  );
+
+  dropContainer.addEventListener("dragenter", () => {
+    dropContainer.classList.add("drag-active");
+  });
+
+  dropContainer.addEventListener("dragleave", () => {
+    dropContainer.classList.remove("drag-active");
+  });
+
+  dropContainer.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropContainer.classList.remove("drag-active");
+    fileInput.files = e.dataTransfer.files;
+  });
+</script>

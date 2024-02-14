@@ -65,6 +65,7 @@ app.use("/test" , (req, res)=>{
 
 app.use("/auth", require("./routes/auth"));
 app.use("/admin", require("./routes/admin"));
+app.use("/user", require("./routes/user"))
 app.use("/", require("./routes/index") )
 
 // app.use("/", (req, res) => {
