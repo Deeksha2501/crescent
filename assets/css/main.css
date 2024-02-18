@@ -25,6 +25,56 @@ body {
   height: 100vh;
 }
 
+.nav {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 10rem;
+  text-align: center;
+}
+.nav__category-item, .nav__category-list {
+  display: none;
+}
+.nav__line {
+  width: 95%;
+  text-align: center;
+  margin: auto;
+  height: 0.1px;
+  background-color: rgba(57, 22, 40, 0.2705882353);
+  border: none;
+}
+.nav__block {
+  align-self: center;
+  height: 100%;
+  flex: 1 1 0px;
+  text-align: center;
+}
+.nav__block a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  text-decoration: none;
+  flex-direction: column;
+  line-height: 2.3rem;
+  color: #222;
+}
+.nav__block a i {
+  font-size: 2.1rem;
+}
+.nav__block a span {
+  line-height: 3rem;
+  color: #055569;
+  font-weight: 800;
+}
+.nav__block img {
+  height: 100%;
+  padding: 1rem 0px 0 2rem;
+  margin-top: 1rem;
+}
+
 .header {
   height: 80vh;
   display: flex;

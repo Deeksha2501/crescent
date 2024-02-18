@@ -34,59 +34,59 @@ body {
 
 
 
-// .nav {
-//   width: 100%;
-//   margin-bottom: 2rem;
-//   display: flex;
-//   justify-content: space-between;
-//   flex-wrap: wrap;
-//   height: 10rem;
-//   text-align: center;
+.nav {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 10rem;
+  text-align: center;
 
-//   &__category-item,
-//   &__category-list {
-//     display: none;
-//   }
+  &__category-item,
+  &__category-list {
+    display: none;
+  }
 
-//   &__line {
-//     width: 95%;
-//     text-align: center;
-//     margin: auto;
-//     height: 0.1px;
-//     background-color: #39162845;
-//     border: none;
-//   }
+  &__line {
+    width: 95%;
+    text-align: center;
+    margin: auto;
+    height: 0.1px;
+    background-color: #39162845;
+    border: none;
+  }
 
-//   &__block {
-//     align-self: center;
-//     height: 100%;
-//     flex: 1 1 0px;
-//     text-align: center;
-//     a {
-//       display: flex;
-//       align-items: center;
-//       height: 100%;
-//       justify-content: center;
-//       text-decoration: none;
-//       flex-direction: column;
-//       line-height: 2.3rem;
-//       color: #222;
-//       i {
-//         font-size: 2.1rem;
-//       }
-//       span {
-//         line-height: 3rem;
-//         color: $accent-color-text;
-//         font-weight: 800;
-//       }
-//     }
-//     img {
-//       height: 100%;
-//       padding: 1rem 0px 0 2rem;
-//       margin-top: 1rem;
-//     }
-//   }
-// }
+  &__block {
+    align-self: center;
+    height: 100%;
+    flex: 1 1 0px;
+    text-align: center;
+    a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      justify-content: center;
+      text-decoration: none;
+      flex-direction: column;
+      line-height: 2.3rem;
+      color: #222;
+      i {
+        font-size: 2.1rem;
+      }
+      span {
+        line-height: 3rem;
+        color: $accent-color-text;
+        font-weight: 800;
+      }
+    }
+    img {
+      height: 100%;
+      padding: 1rem 0px 0 2rem;
+      margin-top: 1rem;
+    }
+  }
+}
 
 .header {
   height: 80vh;
