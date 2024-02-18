@@ -1,61 +1,83 @@
-<nav class="nav">
-    <div class="nav__block">
-      <a href="#"
-        ><i class="zmdi zmdi-search"></i> Search Rings
-      </a>
-    </div>
-    <div class="nav__block">
-      <a href="#">
-        <i class="zmdi zmdi-favorite-outline"></i>
-        My Wishlist</a
-      >
-    </div>
-    <div class="nav__block flex-grow flex-grow2">
-      <a href="/#category"
-        >Shop By <br />
-        Category
-        <ul class="nav__category-list">
-          <li class="nav__category-item">Payal</li>
-          <li class="nav__category-item">Rings</li>
-          <li class="nav__category-item">Earrings</li>
-          <li class="nav__category-item">Chains and Pendants</li>
-          <li class="nav__category-item">Bracelets</li>
-        </ul>
-      </a>
-    </div>
-    <div class="nav__block">
-      <a href="#"
-        >Best at <br />
-        Crescent</a
-      >
-    </div>
+<div class="nav">
+  <div class="upper">
+<div class="search">
+  <i class="zmdi zmdi-search"></i>
+  <input type="text" placeholder="search">
+</div>
+<div class="logo">
+  <img src="https://firebasestorage.googleapis.com/v0/b/crescent-1.appspot.com/o/files%2Ficon3.png?alt=media&token=0437f8e3-942e-4e91-be38-2c8d18945d7b" alt="">
+</div>
+<div class="icons">
+  <a href=""><i class="zmdi zmdi-account"></i></a>
+  <a href=""><i class="zmdi zmdi-favorite-outline"></i></a>
+  <a href=""><i class="zmdi zmdi-shopping-cart"></i></a>
+</div>
+  </div>
+  <div class="lower">
 
-    <div class="nav__block">
-      <a href="/">
-        <img src="https://firebasestorage.googleapis.com/v0/b/crescent-1.appspot.com/o/files%2Ficon3.png?alt=media&token=0437f8e3-942e-4e91-be38-2c8d18945d7b" alt="LOGO" />
-      </a>
-    </div>
-    <div class="nav__block">
-      <a href="#"
-        >More at <br />
-        Crescent</a
-      >
-    </div>
-    <div class="nav__block">
-      <a href="#"
-        >Customised <br />
-        Jewelry</a
-      >
-    </div>
-    <div class="nav__block">
-      <a href="#"
-        ><i class="zmdi zmdi-shopping-cart"></i>My Cart</a
-      >
-    </div>
-    <div class="nav__block">
-      <a href="<%= userName === null ? '/auth/login' : '/user/profile#UserProfile' %>"
-        ><i class="zmdi zmdi-account-o"></i>
-        <%= userName === null ? 'Login/Register' : `Hi ${userName.split(" ")[0]}` %></a
-      >
-    </div>
-  </nav>
+  </div>
+</div>
+
+
+
+<!-- <nav class="nav">
+  <div class="nav__block">
+    <a href="#"
+      ><i class="zmdi zmdi-search"></i> Search Rings
+    </a>
+  </div>
+  <div class="nav__block">
+    <a href="/user/wishlist">
+      <i class="zmdi zmdi-favorite-outline"></i>
+      My Wishlist</a
+    >
+  </div>
+  <div class="nav__block flex-grow flex-grow2">
+    <a href="/#category"
+      >Shop By <br />
+      Category
+      <ul class="nav__category-list">
+        <li class="nav__category-item">Payal</li>
+        <li class="nav__category-item">Rings</li>
+        <li class="nav__category-item">Earrings</li>
+        <li class="nav__category-item">Chains and Pendants</li>
+        <li class="nav__category-item">Bracelets</li>
+      </ul>
+    </a>
+  </div>
+  <div class="nav__block">
+    <a href="#"
+      >Best at <br />
+      Crescent</a
+    >
+  </div>
+
+  <div class="nav__block">
+    <a href="/">
+      <img src="https://firebasestorage.googleapis.com/v0/b/crescent-1.appspot.com/o/files%2Ficon3.png?alt=media&token=0437f8e3-942e-4e91-be38-2c8d18945d7b" alt="LOGO" />
+    </a>
+  </div>
+  <div class="nav__block">
+    <a href="#"
+      >More at <br />
+      Crescent</a
+    >
+  </div>
+  <div class="nav__block">
+    <a href="#"
+      >Customised <br />
+      Jewelry</a
+    >
+  </div>
+  <div class="nav__block">
+    <a href="/user/cart"
+      ><i class="zmdi zmdi-shopping-cart"></i>My Cart</a
+    >
+  </div>
+  <div class="nav__block">
+    <a href="<%= userName === null ? '/auth/login' : '/user/profile#UserProfile' %>"
+      ><i class="zmdi zmdi-account-o"></i>
+      <%= userName === null ? 'Login/Register' : `Hi ${userName.split(" ")[0]}` %></a
+    >
+  </div>
+</nav> -->

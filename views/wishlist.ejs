@@ -1,0 +1,52 @@
+<%- include ("./navigation", {userName : userName}) %>
+<div class="wishlist-block">
+<div id="wishlist-content">
+    <div class="heading">
+        <div class="remove"></div>
+      <div class="img"></div>
+      <div class="name">Product Name</div>
+      <div class="price">Unit Price</div>
+      <div class="stock">Stock Status</div>
+      <div class="cart"></div>
+    </div>
+    <div class="wishlist" id="wishlist-list">
+        No products added to the wishlist
+    </div>
+  </div>
+</div>
+
+  <script>
+    function getWishlist() {
+      fetch("/user/getWishlist")
+        .then((response) => response.json())
+        .then((json) => loadWishlist(json));
+      // l;
+    }
+
+    function loadWishlist(wishlist) {
+      let wishlistHTML = "";
+      console.log(wishlist);
+      for (const wishlistItem of wishlist) {
+        wishlistHTML += `
+     <div class="wishlist-item">
+        <div class="remove">
+          <a href="/user/removeFromWishlist/${wishlistItem._id}">
+          <i class="zmdi zmdi-close"></i>
+      </a>
+          </div>
+              <div class="img">
+                <img src="${wishlistItem.featuredImage}" alt="" />
+              </div>
+              <div class="name">${wishlistItem.productName}</div>
+              <div class="price">${wishlistItem.price}$</div>
+              <div class="stock">${wishlistItem.countInStock > 0 ? 'In Stock' : 'Out of stock'}</div>
+              <div class="cart">
+                <a href="/user/moveToCart/${wishlistItem._id}">Move to cart</a>
+              </div>
+            </div>`
+          }
+      if(wishlist != "")document.getElementById('wishlist-list').innerHTML = wishlistHTML;
+    }
+
+    getWishlist();
+  </script>

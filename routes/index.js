@@ -12,41 +12,71 @@ router.get("/", (req, res) => {
 
 router.get("/category/:category/", async (req, res) => {
   try {
-    let userProducts = await req.user.populate({
+    let name = null;
+    if (req.user) name = req.user.name;
+    let products = await getProductsDataWithWishlistStatus(
+      req.user,
+      req.params.category
+    );
+    console.log({ products });
+    res.render("category", { userName: name, products: products });
+  } catch (err) {
+    console.log({ err });
+  }
+});
+
+async function getProductsDataWithWishlistStatus(user, categoryName) {
+  try {
+    console.log({ categoryName });
+    const category = await Category.findOne({ categoryName: categoryName });
+
+    const products = await Product.find({ categoryId: category._id });
+
+    if (!user) return products;
+
+    const userWithWishlist = await user.populate({
       path: "wishlist",
       select: "_id",
       model: "Product",
     });
-    userProducts = userProducts.wishlist;
-    console.log({ userProducts });
+
+    const userProducts = userWithWishlist.wishlist;
+
+    return products.map((product) => ({
+      ...product.toObject(),
+      isWishlisted: userProducts.some((userProduct) =>
+        userProduct._id.equals(product._id)
+      ),
+    }));
+  } catch (error) {
+    console.error("Error fetching products with wishlist status:", error);
+    throw error;
+  }
+}
+
+router.get("/product/:productId", async (req, res) => {
+  try {
+    let userName = null;
+    const productId = req.params.productId;
+    if (req.user) userName = req.user.name;
+    const userWithWishlist = await req.user.populate({
+      path: "wishlist",
+      select: "_id",
+      model: "Product",
+    });
+
+    const userProducts = userWithWishlist.wishlist;
+    const product = await Product.findById(productId);
+    product.isWishlisted = userProducts.some((userProduct) =>
+      userProduct._id.equals(product._id)
+    );
+    res.render("product", {
+      product: product,
+      userName: userName,
+    });
   } catch (err) {
     console.log({ err });
   }
-
-  let userName = null;
-  if (req.user) userName = req.user.name;
-  const categoryName = req.params.category; //payal
-  const category = await Category.findOne({ name: "Pendants" });
-  const products = await Product.find({ categoryId: category._id });
-  console.log({ products });
-  // res.send(products);
-  res.render("category", { userName: userName, products: products });
-});
-
-async function getProductsDataWithWishlistStatus(userId) {
-  const products = await fetchProductsFromDatabase();
-  const wishlistStatus = await computeWishlistStatus(userId, products);
-  return products.map(product => ({
-    ...product,
-    isWishlisted: wishlistStatus.includes(product._id), 
-  }));
-}
-
-
-router.get("/product/:productId", async (req, res) => {
-  let userName = null;
-  if (req.user) userName = req.user.name;
-  res.render("product", { userName: userName });
 });
 
 module.exports = router;

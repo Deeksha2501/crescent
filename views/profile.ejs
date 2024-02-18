@@ -1,308 +1,308 @@
 <%- include ("./navigation", {userName : user.name}) %>
-<div class="profile">
-  <div class="profile-info">
-    <div class="switcher">
-      <button
-        id="userProfile"
-        class="userProfile underline_animation_active"
-        onclick="openUserProfileTab()"
-      >
-        My Profile
-      </button>
-      <button
-        id="editProfile"
-        class="editProfile"
-        onclick="openEditProfileTab()"
-      >
-        Edit Profile
-      </button>
-      <button id="wishlist" class="wishlist" onclick="openWishlistTab()">
-        wishlist
-      </button>
-      <button id="orders" class="orders" onclick="openOrdersTab()">
-        Orders
-      </button>
-      <button id="address" class="address" onclick="openAddressTab()">
-        Address
-      </button>
-      <button id="logout" class="logout" onclick="logout()">Log Out</button>
-    </div>
-    <div class="profile-content">
-      <div id="userProfile-content" class="info-content">
-        <div class="userContent">
-          <div class="userProfile-content-img">
-            <img src="/assets/images/user.png" alt="" />
-          </div>
-          <div class="userProfile-content-details">
-            <div>Name : <%= user.name %></div>
-            <div>Email : <%= user.email %></div>
-            <div>Contact number : <%= user.contactNumber %></div>
-          </div>
-        </div>
-        <div class="adminControls">
-          <div class="buttons">
-            <button>
-              <a href="/admin/addProducts"> Add Product </a>
-            </button>
-            <button>
-              <a href="/admin/addCategories"> Add Category </a>
-            </button>
-          </div>
-        </div>
+  <div class="profile">
+    <div class="profile-info">
+      <div class="switcher">
+        <button id="userProfile" class="userProfile underline_animation_active" onclick="openUserProfileTab()">
+          My Profile
+        </button>
+        <button id="editProfile" class="editProfile" onclick="openEditProfileTab()">
+          Edit Profile
+        </button>
+        <button id="wishlist" class="wishlist" onclick="openWishlistTab()">
+          wishlist
+        </button>
+        <button id="orders" class="orders" onclick="openOrdersTab()">
+          Orders
+        </button>
+        <button id="address" class="address" onclick="openAddressTab()">
+          Address
+        </button>
+        <button id="logout" class="logout" onclick="logout()">Log Out</button>
       </div>
-      <div id="editProfile-content" class="info-content">
-        <form
-          action="/user/updateProfile"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <!-- <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" /> -->
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value="<%= typeof user.name != 'undefined' ? user.name : '' %>"
-          />
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value="<%= typeof user.email != 'undefined' ? user.email : '' %>"
-            disabled
-          />
-          <%= !Boolean(user.isMerchant && user.isVerified) %>
-          <label for="contact">Contact Number</label>
-          <input
-            type="number"
-            id="contact"
-            name="contact"
-            value="<%= typeof user.contactNumber != 'undefined' ? user.contactNumber : '' %>"
-          />
-          <div class="form-group">
-            <input type="checkbox" name="isMerchant" id="is-merchant"
-            class="is-merchant" 
-            <%=  user.isMerchant ? 'checked' : '' %> 
-            <%=  Boolean(user.isMerchant && user.isVerified) ? 'disabled' : '' %> 
-            onclick="showMerchantForm()" />
-            <label for="isMerchant" class="label-is-merchant"
-              ><span><span></span></span>I want to register as
-              <a href="#" class="term-service">Merchant</a></label
-            >
-          </div>
-          
-          <div class="update-warning">
-            <% if(!Boolean(user.isMerchant && user.isVerified)){ %>
-               Note : Updating your business details will move your request to the end of queue.
-               <% } %>
-          </div>
-
-
-          <div class="merchant-form" id="merchant-form">
-            <label for="businessOwnerName">Business Owner Name</label>
-            <input
-              type="text"
-              id="businessOwnerName"
-              name="businessOwnerName"
-              value="<%= typeof user.businessOwnerName != 'undefined' ? user.businessOwnerName : '' %>"
-            <%=  user.isVerified ? 'disabled' : '' %> 
-            />
-            <label for="gst">GST Number</label>
-            <input
-              type="number"
-              id="gst"
-              name="gst"
-              value="<%= typeof user.gstNumber != 'undefined' ? user.gstNumber : '' %>"
-              <%=  user.isVerified ? 'disabled' : '' %> 
-            />
-            <% if(user.isMerchant){ %>
-              <div class="uploaded-doc">
-                Uploaded PAN Card: 
-                <a href="<%=user.panCardDoc%>">Document</a>
+      <div class="profile-content">
+        <div id="userProfile-content" class="info-content">
+          <div class="userContent">
+            <div class="userProfile-content-img">
+              <img src="/assets/images/user.png" alt="" />
+            </div>
+            <div class="userProfile-content-details">
+              <div>Name : <%= user.name %>
               </div>
-            <% } %>
-            <div class="form-group">
-              <label for="images" class="drop-container" id="dropcontainer" <%= user.isVerified ? 'disabled' : '' %> >
-                <span class="drop-title">Drop Business PAN Card here</span>
-                or
-                <input type="file" name="file" id="images" <%= user.isVerified ? 'disabled' : '' %> />
-              </label>
+              <div>Email : <%= user.email %>
+              </div>
+              <div>Contact number : <%= user.contactNumber %>
+              </div>
             </div>
           </div>
-          <button type="submit">Update Profile</button>
-        </form>
-      </div>
-      <div id="wishlist-content" class="info-content">
-        <div class="heading">
-          <div class="img"></div>
-          <div class="name">Product Name</div>
-          <div class="price">Unit Price</div>
-          <div class="stock">Stock Status</div>
-          <div class="cart"></div>
-          <div class="remove"></div>
-        </div>
-        <div class="wishlist">
-          <div class="wishlist-item">
-            <div class="img">
-              <img src="/assets/images/payal1.jpeg" alt="" />
+          <div class="adminControls">
+            <div class="buttons">
+              <button>
+                <a href="/admin/addProducts"> Add Product </a>
+              </button>
+              <button>
+                <a href="/admin/addCategories"> Add Category </a>
+              </button>
             </div>
-            <div class="name">Small earrings</div>
-            <div class="price">48.00$</div>
-            <div class="stock">In Stock</div>
-            <div class="cart">
-              <button>Add to cart</button>
-            </div>
-            <div class="remove"><i class="zmdi zmdi-close"></i></div>
-          </div>
-          <div class="wishlist-item">
-            <div class="img">
-              <img src="/assets/images/payal1.jpeg" alt="" />
-            </div>
-            <div class="name">Small earrings</div>
-            <div class="price">48.00$</div>
-            <div class="stock">In Stock</div>
-            <div class="cart">
-              <button>Add to cart</button>
-            </div>
-            <div class="remove"><i class="zmdi zmdi-close"></i></div>
           </div>
         </div>
+        <div id="editProfile-content" class="info-content">
+          <form action="/user/updateProfile" method="POST" enctype="multipart/form-data">
+            <!-- <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" /> -->
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="<%= typeof user.name != 'undefined' ? user.name : '' %>" />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"
+              value="<%= typeof user.email != 'undefined' ? user.email : '' %>" disabled />
+            <%= !Boolean(user.isMerchant && user.isVerified) %>
+              <label for="contact">Contact Number</label>
+              <input type="number" id="contact" name="contact"
+                value="<%= typeof user.contactNumber != 'undefined' ? user.contactNumber : '' %>" />
+              <div class="form-group">
+                <input type="checkbox" name="isMerchant" id="is-merchant" class="is-merchant" <%=user.isMerchant
+                  ? 'checked' : '' %>
+                <%= Boolean(user.isMerchant && user.isVerified) ? 'disabled' : '' %>
+                  onclick="showMerchantForm()" />
+                  <label for="isMerchant" class="label-is-merchant"><span><span></span></span>I want to register as
+                    <a href="#" class="term-service">Merchant</a></label>
+              </div>
+
+              <div class="update-warning">
+                <% if(!Boolean(user.isMerchant && user.isVerified)){ %>
+                  Note : Updating your business details will move your request to the end of queue.
+                  <% } %>
+              </div>
+
+
+              <div class="merchant-form" id="merchant-form">
+                <label for="businessOwnerName">Business Owner Name</label>
+                <input type="text" id="businessOwnerName" name="businessOwnerName"
+                  value="<%= typeof user.businessOwnerName != 'undefined' ? user.businessOwnerName : '' %>"
+                  <%=user.isVerified ? 'disabled' : '' %>
+                />
+                <label for="gst">GST Number</label>
+                <input type="number" id="gst" name="gst"
+                  value="<%= typeof user.gstNumber != 'undefined' ? user.gstNumber : '' %>" <%=user.isVerified
+                  ? 'disabled' : '' %>
+                />
+                <% if(user.isMerchant){ %>
+                  <div class="uploaded-doc">
+                    Uploaded PAN Card:
+                    <a href="<%=user.panCardDoc%>">Document</a>
+                  </div>
+                  <% } %>
+                    <div class="form-group">
+                      <label for="images" class="drop-container" id="dropcontainer" <%=user.isVerified ? 'disabled' : ''
+                        %> >
+                        <span class="drop-title">Drop Business PAN Card here</span>
+                        or
+                        <input type="file" name="file" id="images" <%=user.isVerified ? 'disabled' : '' %> />
+                      </label>
+                    </div>
+              </div>
+              <button type="submit">Update Profile</button>
+          </form>
+        </div>
+        <div id="wishlist-content" class="info-content">
+          <div class="heading">
+            <div class="img"></div>
+            <div class="name">Product Name</div>
+            <div class="price">Unit Price</div>
+            <div class="stock">Stock Status</div>
+            <div class="cart"></div>
+            <div class="remove"></div>
+          </div>
+          <div class="wishlist" id="wishlist-list">
+            <div class="wishlist-item">
+              <div class="img">
+                <img src="/assets/images/payal1.jpeg" alt="" />
+              </div>
+              <div class="name">Small earrings</div>
+              <div class="price">48.00$</div>
+              <div class="stock">In Stock</div>
+              <div class="cart">
+                <button>Add to cart</button>
+              </div>
+              <div class="remove"><i class="zmdi zmdi-close"></i></div>
+            </div>
+            <div class="wishlist-item">
+              <div class="img">
+                <img src="/assets/images/payal1.jpeg" alt="" />
+              </div>
+              <div class="name">Small earrings</div>
+              <div class="price">48.00$</div>
+              <div class="stock">In Stock</div>
+              <div class="cart">
+                <button>Add to cart</button>
+              </div>
+              <div class="remove"><i class="zmdi zmdi-close"></i></div>
+            </div>
+          </div>
+        </div>
+        <div id="orders-content" class="info-content">hello orders</div>
+        <div id="address-content" class="info-content">hello Address</div>
       </div>
-      <div id="orders-content" class="info-content">hello orders</div>
-      <div id="address-content" class="info-content">hello Address</div>
     </div>
   </div>
-</div>
 
-<script>
-  var userProfileButton = document.getElementById("userProfile");
-  var editProfileButton = document.getElementById("editProfile");
-  var wishlistButton = document.getElementById("wishlist");
-  var ordersButton = document.getElementById("orders");
-  var addressButton = document.getElementById("address");
-  var userProfileContent = document.getElementById("userProfile-content");
-  var editProfileContent = document.getElementById("editProfile-content");
-  var wishlistContent = document.getElementById("wishlist-content");
-  var ordersContent = document.getElementById("orders-content");
-  var addressContent = document.getElementById("address-content");
+  <script>
+    var userProfileButton = document.getElementById("userProfile");
+    var editProfileButton = document.getElementById("editProfile");
+    var wishlistButton = document.getElementById("wishlist");
+    var ordersButton = document.getElementById("orders");
+    var addressButton = document.getElementById("address");
+    var userProfileContent = document.getElementById("userProfile-content");
+    var editProfileContent = document.getElementById("editProfile-content");
+    var wishlistContent = document.getElementById("wishlist-content");
+    var ordersContent = document.getElementById("orders-content");
+    var addressContent = document.getElementById("address-content");
 
-  function openUserProfileTab() {
-    removeContentOpacity();
-    removeUnderlineClass();
-    userProfileContent.style.opacity = 1;
-    userProfileContent.style.display = "flex";
-    userProfileButton.classList.add("underline_animation_active");
-    window.location = "/user/profile#UserProfile";
-  }
-
-  function openEditProfileTab() {
-    removeContentOpacity();
-    removeUnderlineClass();
-    editProfileContent.style.opacity = 1;
-    editProfileContent.style.display = "flex";
-    editProfileButton.classList.add("underline_animation_active");
-    window.location = "/user/profile#EditProfile";
-  }
-
-  function openWishlistTab() {
-    removeContentOpacity();
-    removeUnderlineClass();
-    wishlistContent.style.opacity = 1;
-    wishlistContent.style.display = "flex";
-    wishlistButton.classList.add("underline_animation_active");
-    window.location = "/user/profile#Wishlist";
-  }
-
-  function openOrdersTab() {
-    removeContentOpacity();
-    removeUnderlineClass();
-    ordersContent.style.opacity = 1;
-    ordersContent.style.display = "flex";
-    ordersButton.classList.add("underline_animation_active");
-    window.location = "/user/profile#Orders";
-  }
-
-  function openAddressTab() {
-    removeContentOpacity();
-    removeUnderlineClass();
-    addressContent.style.opacity = 1;
-    addressContent.style.display = "flex";
-    addressButton.classList.add("underline_animation_active");
-    window.location = "/user/profile#Address";
-  }
-
-  function removeContentOpacity() {
-    userProfileContent.style.opacity = 0;
-    editProfileContent.style.opacity = 0;
-    wishlistContent.style.opacity = 0;
-    ordersContent.style.opacity = 0;
-    addressContent.style.opacity = 0;
-    userProfileContent.style.display = "none";
-    editProfileContent.style.display = "none";
-    wishlistContent.style.display = "none";
-    ordersContent.style.display = "none";
-    addressContent.style.display = "none";
-  }
-
-  function removeUnderlineClass() {
-    wishlistButton.classList.remove("underline_animation_active");
-    userProfileButton.classList.remove("underline_animation_active");
-    editProfileButton.classList.remove("underline_animation_active");
-    ordersButton.classList.remove("underline_animation_active");
-    addressButton.classList.remove("underline_animation_active");
-  }
-
-  function logout() {
-    window.location = "/auth/logout";
-  }
-
-  window.onload = (event) => {
-    let hash = window.location.hash.slice(1);
-    if (hash.length == 0) return openUserProfileTab();
-    hash = hash[0].toUpperCase() + hash.slice(1);
-    console.log({ hash });
-    let tab = `open${hash}Tab()`;
-    eval(tab);
-  };
-
-  function showMerchantForm() {
-    let isInputChecked = document.getElementById("is-merchant").checked;
-    let merchantForm = document.getElementById("merchant-form");
-    console.log(document.getElementById("is-merchant").checked);
-    if (isInputChecked) {
-      merchantForm.style.display = "block";
-    } else {
-      merchantForm.style.display = "none";
+    function openUserProfileTab() {
+      removeContentOpacity();
+      removeUnderlineClass();
+      userProfileContent.style.opacity = 1;
+      userProfileContent.style.display = "flex";
+      userProfileButton.classList.add("underline_animation_active");
+      window.location = "/user/profile#UserProfile";
     }
-  }
 
-  showMerchantForm();
+    function openEditProfileTab() {
+      removeContentOpacity();
+      removeUnderlineClass();
+      editProfileContent.style.opacity = 1;
+      editProfileContent.style.display = "flex";
+      editProfileButton.classList.add("underline_animation_active");
+      window.location = "/user/profile#EditProfile";
+    }
 
-  const dropContainer = document.getElementById("dropcontainer");
-  const fileInput = document.getElementById("images");
+    function openWishlistTab() {
 
-  dropContainer.addEventListener(
-    "dragover",
-    (e) => {
-      // prevent default to allow drop
+      removeContentOpacity();
+      removeUnderlineClass();
+      wishlistContent.style.opacity = 1;
+      wishlistContent.style.display = "flex";
+      wishlistButton.classList.add("underline_animation_active");
+      window.location = "/user/profile#Wishlist";
+    }
+
+    function openOrdersTab() {
+      removeContentOpacity();
+      removeUnderlineClass();
+      ordersContent.style.opacity = 1;
+      ordersContent.style.display = "flex";
+      ordersButton.classList.add("underline_animation_active");
+      window.location = "/user/profile#Orders";
+    }
+
+    function openAddressTab() {
+      removeContentOpacity();
+      removeUnderlineClass();
+      addressContent.style.opacity = 1;
+      addressContent.style.display = "flex";
+      addressButton.classList.add("underline_animation_active");
+      window.location = "/user/profile#Address";
+    }
+
+    function removeContentOpacity() {
+      userProfileContent.style.opacity = 0;
+      editProfileContent.style.opacity = 0;
+      wishlistContent.style.opacity = 0;
+      ordersContent.style.opacity = 0;
+      addressContent.style.opacity = 0;
+      userProfileContent.style.display = "none";
+      editProfileContent.style.display = "none";
+      wishlistContent.style.display = "none";
+      ordersContent.style.display = "none";
+      addressContent.style.display = "none";
+    }
+
+    function removeUnderlineClass() {
+      wishlistButton.classList.remove("underline_animation_active");
+      userProfileButton.classList.remove("underline_animation_active");
+      editProfileButton.classList.remove("underline_animation_active");
+      ordersButton.classList.remove("underline_animation_active");
+      addressButton.classList.remove("underline_animation_active");
+    }
+
+    function logout() {
+      window.location = "/auth/logout";
+    }
+
+    window.onload = (event) => {
+      let hash = window.location.hash.slice(1);
+      if (hash.length == 0) return openUserProfileTab();
+      hash = hash[0].toUpperCase() + hash.slice(1);
+      console.log({ hash });
+      let tab = `open${hash}Tab()`;
+      eval(tab);
+    };
+
+    function showMerchantForm() {
+      let isInputChecked = document.getElementById("is-merchant").checked;
+      let merchantForm = document.getElementById("merchant-form");
+      console.log(document.getElementById("is-merchant").checked);
+      if (isInputChecked) {
+        merchantForm.style.display = "block";
+      } else {
+        merchantForm.style.display = "none";
+      }
+    }
+
+    showMerchantForm();
+
+    const dropContainer = document.getElementById("dropcontainer");
+    const fileInput = document.getElementById("images");
+
+    dropContainer.addEventListener(
+      "dragover",
+      (e) => {
+        // prevent default to allow drop
+        e.preventDefault();
+      },
+      false
+    );
+
+    dropContainer.addEventListener("dragenter", () => {
+      dropContainer.classList.add("drag-active");
+    });
+
+    dropContainer.addEventListener("dragleave", () => {
+      dropContainer.classList.remove("drag-active");
+    });
+
+    dropContainer.addEventListener("drop", (e) => {
       e.preventDefault();
-    },
-    false
-  );
+      dropContainer.classList.remove("drag-active");
+      fileInput.files = e.dataTransfer.files;
+    });
 
-  dropContainer.addEventListener("dragenter", () => {
-    dropContainer.classList.add("drag-active");
-  });
+    function getWishlist() {
+      fetch("/user/getWishlist")
+        .then((response) => response.json())
+        .then((json) => loadWishlist(json));
+      // l;
+    }
 
-  dropContainer.addEventListener("dragleave", () => {
-    dropContainer.classList.remove("drag-active");
-  });
+    function loadWishlist(wishlist) {
+      let wishlistHTML = "";
+      console.log(wishlist);
+      for (const wishlistItem of wishlist) {
+        wishlistHTML += `
+     <div class="wishlist-item">
+              <div class="img">
+                <img src="${wishlistItem.featuredImage}" alt="" />
+              </div>
+              <div class="name">${wishlistItem.productName}</div>
+              <div class="price">${wishlistItem.price}$</div>
+              <div class="stock">${wishlistItem.countInStock > 0 ? 'In Stock' : 'Out of stock'}</div>
+              <div class="cart">
+                <a href="/user/moveToCart/${wishlistItem._id}">Move to cart</a>
+              </div>
+              <div class="remove"><i class="zmdi zmdi-close"></i></div>
+            </div>`
+          }
+      document.getElementById('wishlist-list').innerHTML = wishlistHTML;
+    }
 
-  dropContainer.addEventListener("drop", (e) => {
-    e.preventDefault();
-    dropContainer.classList.remove("drag-active");
-    fileInput.files = e.dataTransfer.files;
-  });
-</script>
+    getWishlist();
+  </script>

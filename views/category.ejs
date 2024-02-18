@@ -1,113 +1,125 @@
 <section class="category-section">
   <%- include ("./navigation", {userName : userName}) %>
-  <div class="category">
-    <div class="category__header">
-      <div class="category__header-text">
-        <h1>Category</h1>
-      </div>
-      <div class="category__header-box">
-        <div class="category__header-box-bg">
-          <div class="category__header-box__img-container">
-            <div class="category__header-box-img cat-img-animation">
-              <img src="/assets/images/category-chain.jpg" alt="" />
+    <div class="category">
+      <div class="category__header">
+        <div class="category__header-text">
+          <h1>Category</h1>
+        </div>
+        <div class="category__header-box">
+          <div class="category__header-box-bg">
+            <div class="category__header-box__img-container">
+              <div class="category__header-box-img cat-img-animation">
+                <img src="/assets/images/category-chain.jpg" alt="" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="products_block">
-      <div class="products_block__container">
-        <% for(let i=0 ; i < products.length ; i++){ %> 
-          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
-          <div class="products_block__card_img">
-            <img src="<%=products[i].featuredImage %>" alt="" />
-            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
-            <a href="<%= url %>">
-              <span class="material-symbols-outlined"> favorite </span>
-            </a>
-            <a class="cart" href="<%=`/user/addToCart/${products[i]._id}`%>">
-              <span>Add To Cart</span>
-            </a>
-          </div>
-          <div class="products_block__card_details">
-            <div class="products_block__card_details_name"><%=products[i].name %></div>
-            <div class="products_block__card_details_price">$<%=products[i].price %></div>
-          </div>
-        </div>
-        <% } %>
-
-        <% for(let i=0 ; i < products.length ; i++){ %> 
-          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
-          <div class="products_block__card_img">
-            <img src="<%=products[i].featuredImage %>" alt="" />
-            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
-            <a href="<%= url %>">
-              <span class="material-symbols-outlined"> favorite </span>
-            </a>
-          </div>
-          <div class="products_block__card_details">
-            <div class="products_block__card_details_name"><%=products[i].name %></div>
-            <div class="products_block__card_details_price">$<%=products[i].price %></div>
-          </div>
-        </div>
-        <% } %>
-
-        <% for(let i=0 ; i < products.length ; i++){ %> 
-          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
-          <div class="products_block__card_img">
-            <img src="<%=products[i].featuredImage %>" alt="" />
-            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
-            <a href="<%= url %>">
-              <span class="material-symbols-outlined"> favorite </span>
-            </a>
-          </div>
-          <div class="products_block__card_details">
-            <div class="products_block__card_details_name"><%=products[i].name %></div>
-            <div class="products_block__card_details_price">$<%=products[i].price %></div>
-          </div>
-        </div>
-        <% } %>
-
-        <% for(let i=0 ; i < products.length ; i++){ %> 
-          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="card products_block__card">
-          <div class="products_block__card_img">
-            <img src="<%=products[i].featuredImage %>" alt="" />
-            <% let url = `/user/addToWishlist/${products[i]._id}`; %>
-            <a href="<%= url %>">
-              <span class="material-symbols-outlined"> favorite </span>
-            </a>
-          </div>
-          <div class="products_block__card_details">
-            <div class="products_block__card_details_name"><%=products[i].name %></div>
-            <div class="products_block__card_details_price">$<%=products[i].price %></div>
-          </div>
-        </div>
-        <% } %>
-
-        <!-- <div class="card products_block__card">
-          <div class="card products_block__card">
-            <div class="products_block__card_img">
-              <img src="/assets/images/p1.jpeg" alt="" />
+      <div class="products_block">
+        <div class="products_block__container">
+          <% for(let i=0 ; i < products.length ; i++){ %>
+            <div class="card products_block__card">
+              <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="products_block__card_img">
+                <img src="<%=products[i].featuredImage %>" alt="" />
+                <form class="cart" action="<%=`/user/addToCart/${products[i]._id}`%>" method="POST">
+                  <button type="submit">Add To Cart</button>
+                </form>
+              </div>
+              <div class="products_block__card_details">
+                <div class="products_block__card_details_name">
+                  <div class="name">
+                    <%=products[i].productName %>
+                  </div>
+                  <div class="info">
+                    <a href="#">category</a>
+                  </div>
+                  <div class="price">₹ <%=products[i].price %>
+                  </div>
+                </div>
+                <% let url=`/user/addToWishlist/${products[i]._id}`; %>
+                  <div onclick="updateWishlist(`<%= products[i]._id %>`)" data="<%=products[i].isWishlist %>"
+                    class="products_block__card_details_fav">
+                    <form action="<%= url %>" method="get" target=<%=`uploader_iframe_${products[i]._id}` %>>
+                      <button id=<%=`fav_button_${products[i]._id}` %> type="submit">
+                        <%if(Boolean(products[i].isWishlisted)){%>
+                          <i class="zmdi zmdi-favorite"></i>
+                          <%}else{%>
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                            <%}%>
+                      </button>
+                      <div data-aos="fade-right" class="status" id=<%=`status_${products[i]._id}` %>></div>
+                    </form>
+                    <iframe id=<%=`uploader_iframe_${products[i]._id}` %> name=<%= `uploader_iframe_${products[i]._id}`
+                        %>></iframe>
+                  </div>
+              </div>
             </div>
-            <div class="products_block__card_details">
-              <div class="products_block__card_details_name">Silver chain</div>
-              <div class="products_block__card_details_price">$222</div>
-            </div>
-          </div>
-        </div>
-        <div class="card products_block__card">
-          <div class="card products_block__card">
-            <div class="products_block__card_img">
-              <img src="/assets/images/p3.jpeg" alt="" />
-            </div>
-            <div class="products_block__card_details">
-              <div class="products_block__card_details_name">Silver chain</div>
-              <div class="products_block__card_details_price">$222</div>
-            </div>
-          </div>
-        </div> -->
+            <% } %>
 
+        </div>
       </div>
     </div>
-  </div>
 </section>
+
+
+<script>
+
+
+  function checkIframeLoaded(id) {
+    var iframe = document.getElementById(`uploader_iframe_${id}`);
+
+    function onLoadHandler() {
+      var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+      if (iframeDoc) {
+        var preElement = iframeDoc.body.getElementsByTagName('pre')[0];
+
+        if (preElement) {
+          var response = preElement.innerHTML;
+          console.log({ response });
+
+          // Update your button or perform other actions based on the response
+          updateButton(response, id);
+        } else {
+          console.error("Error: 'pre' element not found in iframe content.");
+        }
+      } else {
+        console.error("Error: Unable to access iframe document.");
+      }
+    }
+
+    if (iframe.readyState == 'complete') {
+      onLoadHandler();
+    } else {
+      // Use the load event to ensure the content is fully loaded
+      iframe.addEventListener('load', onLoadHandler);
+    }
+  }
+
+
+  function updateButton(response, id) {
+    const updateButton = document.getElementById(`fav_button_${id}`);
+    let status = document.getElementById(`status_${id}`);
+    status.style.display = "block";
+    updateButton.classList.remove('load');
+    if (response === "true") {
+      updateButton.innerHTML = `<i class="zmdi zmdi-favorite"></i>`
+      status.innerHTML = 'Added to Wishlist';
+    } else if (response === "false") {
+      updateButton.innerHTML = `<i class="zmdi zmdi-favorite-outline"></i>`
+      status.innerHTML = 'Removed from Wishlist';
+    } else {
+      status.innerHTML = 'Try Again!';
+    }
+    setTimeout(function () {
+      status.style.display = "none";
+    }, 2000);
+  }
+
+  function updateWishlist(id) {
+    const updateButton = document.getElementById(`fav_button_${id}`);
+    updateButton.classList.add('load');
+    console.log({ id })
+    checkIframeLoaded(id);
+  }
+</script>

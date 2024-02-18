@@ -74,18 +74,20 @@ exports.addProducts = async (req, res) => {
     const dateTime = giveCurrentDateTime();
     console.log(req.file);
     console.log(req.body);
-    const productName = req.body.productName;
-    const price = req.body.price;
-    const discountPrice = req.body.discountPrice;
-    const countInStock = req.body.countInStock;
-    const weight = req.body.weight;
-    const length = req.body.length;
-    const metalDescription = req.body.metalDescription;
-    const purity = req.body.purity;
-    const warranty = req.body.warranty;
-    const stones = req.body.stones;
-    const description = req.body.description;
-    const categoryId = req.body.categoryId;
+    const {
+      productName,
+      price,
+      discountPrice,
+      countInStock,
+      weight,
+      length,
+      metalDescription,
+      purity,
+      warranty,
+      stones,
+      description,
+      categoryId,
+    } = req.body;
 
     const storageRef = ref(
       storage,
@@ -122,10 +124,7 @@ exports.addProducts = async (req, res) => {
     });
 
     newProduct.save().then((p) => {
-      req.flash(
-        "success_msg",
-        "Product Added Successfully"
-      );
+      req.flash("success_msg", "Product Added Successfully");
       res.redirect("/admin/addProducts");
     });
   } catch (error) {

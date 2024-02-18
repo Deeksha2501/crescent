@@ -106,15 +106,14 @@
             <p>Category :</p>
             <% for ( var i = 0; i < categories.length; i++ ) { %>
             <input
-              name="option"
+              name="categoryId"
               type="radio"
-              id="<%= categories[ i ].name %>"
+              id="<%= categories[ i ].categoryName %>"
               class="hide"
               value="<%=categories[ i ]._id %>"
-              checked
             />
-            <label for="<%= categories[ i ].name %>"
-              ><%= categories[ i ].name %></label
+            <label for="<%= categories[ i ].categoryName %>"
+              ><%= categories[ i ].categoryName %></label
             >
             <% } %>
           </div>

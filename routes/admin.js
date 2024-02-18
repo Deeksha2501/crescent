@@ -20,7 +20,7 @@ router.get("/addProducts", async (req, res) => {
   if (req.user) userName = req.user.name;
   var categories = await Category.find();
   categories = categories.map((c) => {
-    return { _id: c._id, name: c.name };
+    return { _id: c._id, categoryName: c.categoryName };
   });
   console.log({ categories });
   res.render("addProducts", {

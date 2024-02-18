@@ -31,6 +31,34 @@ exports.getUserProfile = (req, res) => {
   }
 };
 
+exports.getUserWishlist = async (req, res) => {
+  try {
+    const userWithWishlist = await req.user.populate({
+      path: "wishlist",
+      model: "Product",
+    });
+
+    const userProducts = userWithWishlist.wishlist;
+    res.send(userProducts);
+  } catch (err) {
+    console.log({ err });
+  }
+};
+
+exports.getUserCart = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const cartProducts = await Cart.findOne({ userId: userId }).populate({
+      path: "products.productId",
+      model: "Product",
+    });
+    res.send(cartProducts);
+  } catch (err) {
+    console.log({ err });
+  }
+};
+
 exports.updateHandle = (req, res) => {
   try {
     const user = req.user;
@@ -90,12 +118,14 @@ exports.switchToMerchantProfile = async (req, res) => {
 
 exports.addToCart = async (req, res) => {
   const productId = req.params.productId;
+  const quantity = req.body.quantity;
+  console.log(req.body);
   console.log(productId);
   try {
     let userId = req.user._id;
     Cart.findOneAndUpdate(
       { userId, "products.productId": productId },
-      { $inc: { "products.$.quantity": 1 } },
+      { $inc: { "products.$.quantity": quantity } },
       { new: true }
     )
       .then((userCart) => {
@@ -104,7 +134,11 @@ exports.addToCart = async (req, res) => {
         } else {
           return Cart.findOneAndUpdate(
             { userId },
-            { $addToSet: { products: { productId: productId, quantity: 1 } } },
+            {
+              $addToSet: {
+                products: { productId: productId, quantity: quantity },
+              },
+            },
             { new: true, upsert: true }
           );
         }
@@ -117,7 +151,51 @@ exports.addToCart = async (req, res) => {
       });
   } catch (err) {
     console.log({ err });
-    // res.redirect()
+    res.redirect(`/product/${productId}`);
+  }
+};
+
+exports.moveToCart = async (req, res) => {
+  const productId = req.params.productId;
+
+  try {
+    let userId = req.user._id;
+
+    // Step 1: Remove the product from the wishlist
+    const wishlist = req.user.wishlist; // Assuming wishlist is an array or object
+    const updatedWishlist = removeProductFromWishlist(wishlist, productId);
+
+    if (!updatedWishlist) {
+      console.log("Product not found in the wishlist");
+      return res
+        .status(404)
+        .json({ error: "Product not found in the wishlist" });
+    }
+    req.user.wishlist = updatedWishlist;
+    await req.user.save();
+
+    const userCart = await Cart.findOne({ userId: userId });
+    console.log({ userCart });
+    let productInCart;
+    if (userCart)
+      productInCart = userCart.products.find(
+        (product) => product.productId.toString() == productId
+      );
+    console.log({ productInCart });
+    if (!productInCart) {
+      const updatedCart = await Cart.findOneAndUpdate(
+        { userId },
+        { $addToSet: { products: { productId: productId, quantity: 1 } } },
+        { new: true, upsert: true }
+      );
+
+      console.log("Updated cart:", updatedCart);
+    }
+
+    res.send(true);
+  } catch (error) {
+    console.error("Error:", error);
+    res.send(false);
   }
 };
 
@@ -127,14 +205,77 @@ exports.addToWishlist = async (req, res) => {
       params: { productId },
       user,
     } = req;
-    console.log({ user });
 
-    user.wishlist.push(productId);
+    const isProductInWishlist = user.wishlist.includes(productId);
+    let responseCode = "";
+
+    if (isProductInWishlist) {
+      // If the product is already in the wishlist, remove it
+      user.wishlist = user.wishlist.filter(
+        (id) => id.toString() !== productId.toString()
+      );
+      responseCode = false;
+    } else {
+      // If the product is not in the wishlist, add it
+      user.wishlist.push(productId);
+      responseCode = true;
+    }
+
     await user.save();
-
-    res.redirect("/");
+    res.send(responseCode);
   } catch (err) {
     console.log(err);
+    res.send(undefined);
+  }
+};
+
+exports.removeFromWishlist = async (req, res) => {
+  const productId = req.params.productId;
+  try {
+    let userId = req.user._id;
+
+    // Step 1: Remove the product from the wishlist
+    const wishlist = req.user.wishlist; // Assuming wishlist is an array or object
+    const updatedWishlist = removeProductFromWishlist(wishlist, productId);
+
+    if (!updatedWishlist) {
+      console.log("Product not found in the wishlist");
+      return res
+        .status(404)
+        .json({ error: "Product not found in the wishlist" });
+    }
+    req.user.wishlist = updatedWishlist;
+    await req.user.save();
+    res.redirect("/user/wishlist");
+  } catch (err) {
+    console.log({ err });
+  }
+};
+
+exports.updateCart = async (req, res) => {
+  try {
+    const formData = req.body;
+    console.log({ formData });
+
+    Object.keys(formData).forEach(async (key) => {
+      if (key.startsWith("quantity_")) {
+        const productId = key.replace("quantity_", "");
+        const quantity = formData[key];
+
+        console.log(`Product ID: ${productId}, Quantity: ${quantity}`);
+
+        await Cart.updateOne(
+          { userId: req.user._id, "products.productId": productId },
+          { $set: { "products.$.quantity": quantity } }
+        ).then((cart) => {
+          console.log({ cart });
+        });
+      }
+    });
+    res.send(true);
+  } catch (err) {
+    console.log({ err });
+    res.send(false);
   }
 };
 
@@ -147,3 +288,16 @@ const giveCurrentDateTime = () => {
   const dateTime = date + " " + time;
   return dateTime;
 };
+
+function removeProductFromWishlist(wishlist, productId) {
+  console.log({ productId });
+  console.log({ wishlist });
+  const index = wishlist.findIndex((id) => id.toString() == productId);
+
+  // If the product is found, remove it from the wishlist
+  if (index !== -1) {
+    wishlist.splice(index, 1);
+    return wishlist; // Return the updated wishlist
+  }
+  return null;
+}
