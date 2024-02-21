@@ -3,7 +3,7 @@ var el_down = document.getElementById("GFG_DOWN");
 var el_body = document.getElementById("body");
 // el_up.innerHTML = JSON.stringify(GFG_object);
 
-console.log("el_up", el_up);
+// console.log("el_up", el_up);
 
 function gfg_Run() {
   var index = -1;
@@ -65,52 +65,52 @@ function scrollImg(scrollValue) {
 
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach((entry)=>{
-    console.log(entry);
+    // console.log(entry);
     if(entry.isIntersecting){
-      console.log("classes " , entry.target.classList)
-      console.log("added class");
+      // console.log("classes " , entry.target.classList)
+      // console.log("added class");
       entry.target.classList.add('abc');
 
     }else {
-      console.log("removed class");
+      // console.log("removed class");
       entry.target.classList.remove('abc');}
   })
 })
 
 const recobserver = new IntersectionObserver((entries)=>{
   entries.forEach((entry)=>{
-    console.log(entry);
+    // console.log(entry);
     if(entry.isIntersecting){
-      console.log("classes " , entry.target.classList)
-      console.log("added class");
+      // console.log("classes " , entry.target.classList)
+      // console.log("added class");
       entry.target.classList.add('appear');
 
     }else {
-      console.log("removed class");
+      // console.log("removed class");
       entry.target.classList.remove('appear');}
   })
 })
 
 const frameobserver = new IntersectionObserver((entries)=>{
   entries.forEach((entry)=>{
-    console.log(entry);
+    // console.log(entry);
     if(entry.isIntersecting){
-      console.log("agigiffyik " , entry.target.classList)
-      console.log("added class");
+      // console.log("agigiffyik " , entry.target.classList)
+      // console.log("added class");
       entry.target.classList.add('appear');
 
     }else {
-      console.log("removed class");
+      // console.log("removed class");
       entry.target.classList.remove('appear');}
   })
 })
 
 const catImgAnimationObserver = new IntersectionObserver((entries)=>{
   entries.forEach((entry)=>{
-    console.log(entry);
+    // console.log(entry);
     if(entry.isIntersecting){
-      console.log("agigiffyik " , entry.target.classList)
-      console.log("added class");
+      // console.log("agigiffyik " , entry.target.classList)
+      // console.log("added class");
       entry.target.classList.add('appear');
 
     }

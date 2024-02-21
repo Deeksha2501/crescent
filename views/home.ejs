@@ -1,66 +1,32 @@
 <div class="header-nav">
   <%- include ("./navigation" , {userName : userName}) %>
-  <hr class="nav__line" />
+    <!-- <hr class="nav__line" /> -->
 
-  <!-- <header>
-    <div class="header-inner">
-      <div class="header-slider">
-        <div class="content">
-          <div class="slide-0">text 1</div>
-          <div class="slide-1">text 2</div>
-          <div class="slide-2">text 3</div>
+    <header>
+      <div data-aos="fade-down" data-aos-duration="1000" class="content">
+        <div class="head">Diverse <br> Elegance</div>
+        <div class="tagline">Elevate Your Style, Expand Your Options: Where Variety Meets Affordability in Every
+          Sparkle.</div>
+        <button><a href="">Show now</a></button>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1000" class="slides">
+        <div class="slide-image" id="slide-image-0">
+          <img src="/assets/images/img1.jpeg" alt="">
         </div>
-        <div class="media">
-          <div class="slide-0">
-            <div class="img-container">
-
-            </div>
-          </div>
-          <div class="slide-1">text 2</div>
-          <div class="slide-2">text 3</div>
+        <div class="slide-image" id="slide-image-1">
+          <img src="/assets/images/img2.jpeg" alt="">
+        </div>
+        <div class="slide-image" id="slide-image-2">
+          <img src="/assets/images/img3.jpeg" alt="">
+        </div>
+        <div class="button-next" id="moveRightButton">
+          <svg class="qodef-svg--slider-arrow-right" x="0px" y="0px" width="24" height="50" viewBox="0 0 24 50"
+            xml:space="preserve">
+            <path d="m 0.4 0.3 l 22 24.5 l -22 24.5"></path>
+          </svg>
         </div>
       </div>
-    </div>
-  </header> -->
-
-  <header class="header">
-    <div data-aos="fade-down" data-aos-duration="1000" class="header__content">
-      <div class="header__vertical_text">
-        <div class="header__vertical_text_box">
-          Where Elegance Meets Endless Inspiration.
-        </div>
-      </div>
-
-      <div class="header__text">
-        <div class="header__text__subheading">
-          Unique Collection of
-          <hr />
-        </div>
-        <div class="header__text__heading">
-          <h1>Our Silver Rings</h1>
-        </div>
-        <div class="header__text__para" id="hey">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-          deleniti quaerat est minima. Vel corrupti eaque est earum iusto.
-        </div>
-        <div class="header__text__button">
-          <a href="#">BUY NOW</a>
-        </div>
-      </div>
-    </div>
-    <div data-aos="fade-up" data-aos-duration="1000" class="header__image">
-      <div class="header__image_big" id="header_image_container">
-        <img id="header_image_0" src="assets/images/img2 2.jpg" alt="" />
-        <img id="header_image_1" src="assets/images/img1.jpg" alt="" />
-        <img id="header_image_2" src="assets/images/img3.jpg" alt="" />
-      </div>
-      <div class="header__image_small">
-        <img src="assets/images/img52.jpg" alt="" />
-      </div>
-    </div>
-  </header>
-
-
+    </header>
 
 </div>
 <div class="mid">
@@ -75,8 +41,7 @@
     <p>selection</p>
   </div>
   <div class="mid__story" data-aos="flip-right" data-aos-duration="1000">
-    <span class="mid__story__bigO" data-text="O"
-      >O
+    <span class="mid__story__bigO" data-text="O">O
       <span class="mid__story__text">Our Story</span>
     </span>
   </div>
@@ -92,23 +57,10 @@
 
     <div class="products__block products__block__item2">
       <span class="ellipses">
-        <svg
-          class="check"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 568.4 532.7"
-          style="enable-background: new 0 0 568.4 532.7"
-          xml:space="preserve"
-        >
-          <path
-            d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0"
-            transform="rotate(-14.67 284.165 266.296)"
-          ></path>
-          <path
-            d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0"
-            transform="rotate(-60.877 284.171 266.32)"
-          ></path>
+        <svg class="check" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 568.4 532.7"
+          style="enable-background: new 0 0 568.4 532.7" xml:space="preserve">
+          <path d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0" transform="rotate(-14.67 284.165 266.296)"></path>
+          <path d="M21,266a263,163 0 1,0 526,0a263,163 0 1,0 -526,0" transform="rotate(-60.877 284.171 266.32)"></path>
         </svg>
       </span>
       <div class="products__block__img products__block__img2"></div>
@@ -117,13 +69,8 @@
           <a href="/category/Pendants"> Pendants </a>
         </h4>
         <div class="products__block__content__more">
-          <a
-            class="products__block__content__more--link"
-            href="/category/Pendants"
-            target="_self"
-          >
-            <span>Check Out</span></a
-          >
+          <a class="products__block__content__more--link" href="/category/Pendants" target="_self">
+            <span>Check Out</span></a>
         </div>
       </div>
     </div>
@@ -138,13 +85,8 @@
           <a href="/category/Bracelets"> Bracelets </a>
         </h4>
         <div class="products__block__content__more">
-          <a
-            class="products__block__content__more--link"
-            href="/category/Bracelets"
-            target="_self"
-          >
-            <span>Check Out</span></a
-          >
+          <a class="products__block__content__more--link" href="/category/Bracelets" target="_self">
+            <span>Check Out</span></a>
         </div>
       </div>
     </div>
@@ -153,19 +95,11 @@
       <div class="products__block__img products__block__img4"></div>
       <span class="frame">
         <span class="frame-inner">
-          <svg
-            class="qodef-svg--frame"
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            viewBox="0 0 427.7 533.7"
-            style="enable-background: new 0 0 427.7 533.7"
-            xml:space="preserve"
-          >
-            <path
-              class="frame-hidden"
-              d="M425.7,239.5c0-131-94.8-237.1-211.9-237.1S2,108.5,2,239.5c0,4.3,0.1,8.6,0.3,12.8v279.1h423.4V240.3h0  C425.7,240,425.7,239.7,425.7,239.5z"
-            ></path>
+          <svg class="qodef-svg--frame" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 427.7 533.7"
+            style="enable-background: new 0 0 427.7 533.7" xml:space="preserve">
+            <path class="frame-hidden"
+              d="M425.7,239.5c0-131-94.8-237.1-211.9-237.1S2,108.5,2,239.5c0,4.3,0.1,8.6,0.3,12.8v279.1h423.4V240.3h0  C425.7,240,425.7,239.7,425.7,239.5z">
+            </path>
           </svg>
         </span>
       </span>
@@ -174,16 +108,45 @@
           <a href="/category/Payals"> Payals </a>
         </h4>
         <div class="products__block__content__more">
-          <a
-            class="products__block__content__more--link"
-            href="/category/Payals"
-            target="_self"
-          >
-            <span>Check Out</span></a
-          >
+          <a class="products__block__content__more--link" href="/category/Payals" target="_self">
+            <span>Check Out</span></a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const slides = document.getElementsByClassName('slide-image');
+  let currentIndex = 0;
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.zIndex = slides.length - i;
+  }
+
+  setInterval(function () {
+    moveSlidesRight();
+  }, 6000);
+
+  document.getElementById('moveRightButton').addEventListener('click', function () {
+    moveSlidesRight();
+  });
+
+  function moveSlidesRight() {
+    slides[currentIndex].style.animation = "slideLeft 2s";
+
+    setTimeout(function () {
+      slides[currentIndex].style.animation = "";
+      currentIndex = (currentIndex + 1) % slides.length;
+      let zIndex = slides.length;
+
+      for (let i = currentIndex; i < currentIndex + slides.length; i++) {
+        slides[i % slides.length].style.zIndex = zIndex;
+        zIndex--;
+      }
+    }, 2000);
+  }
+
+</script>
+
 <%- include ("./footer") %>

@@ -28,13 +28,13 @@
 
         <h1>Cart Totals</h1>
         <div class="price-block">
-            <div class="subtotal entry">
+            <div class="st entry">
                 <div class="text">Subtotal</div>
-                <div class="value">130.00 $</div>
+                <div id="st" class="value">130.00 $</div>
             </div>
             <div class="total entry">
                 <div class="text">Total</div>
-                <div class="value">130.00 $</div>
+                <div id="total" class="value">130.00 $</div>
             </div>
         </div>
         <button id="proceed-to-checkout">Proceed to checkout</button>
@@ -46,14 +46,17 @@
         function getCart() {
             fetch("/user/getCart")
                 .then((response) => response.json())
-                .then((json) => loadCart(json));
+                .then((json) => loadCart(json))
+                .then(updateTotal());
         }
 
         function loadCart(cart) {
             let cartHTML = "";
+            let total = 0;
             console.log(cart);
             for (const cartItem of cart.products) {
                 const subtotal = cartItem.productId.price * cartItem.quantity;
+                total += subtotal;
                 cartHTML += `
         <div class="cart-item">
             <div class="remove"><i class="zmdi zmdi-close"></i></div>
@@ -72,12 +75,16 @@
                     <span class="quantity-plus" onclick="increaseQuantity('quantity_${cartItem.productId._id}'); updateSubtotal('${cartItem.productId._id}', ${cartItem.productId.price})"></span>
                   </div>
             </div>
-            <div class="subtotal" id= "subtotal_${cartItem.productId._id}">
+            <div class="subtotal p_subtotal" id= "subtotal_${cartItem.productId._id}">
               ${subtotal.toFixed(2)} $
             </div>
           </div>`
             }
             if (cartHTML != "") document.getElementById('cart-list').innerHTML = cartHTML;
+            console.log({total})
+            document.getElementById('st').innerHTML = total.toFixed(2);
+            document.getElementById('total').innerHTML = total.toFixed(2);
+
         }
 
         function checkIframeLoaded() {
@@ -163,6 +170,20 @@
             const newSubtotal = unitPrice * newQuantity;
             subtotalElement.textContent = `${newSubtotal.toFixed(2)} $`;
         }
+
+        function updateTotal(){
+            const productTotals = document.getElementsByClassName('p_subtotal');
+            console.log({productTotals})
+            console.log("first")
+            var total;
+            for(let i=0 ;i<productTotals.length ; i++){
+                console.log(productTotals[i])
+            }
+            // productTotals.forEach(subtotal => {
+            //     console.log(productTotals);
+            // });
+        }
+
 
         getCart();
     </script>

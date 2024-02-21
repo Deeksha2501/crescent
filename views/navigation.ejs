@@ -1,26 +1,60 @@
-<!-- <div class="nav">
+<div class="nav">
   <div class="upper">
-<div class="search">
-  <i class="zmdi zmdi-search"></i>
-  <input type="text" placeholder="search">
-</div>
-<div class="logo">
-  <img src="https://firebasestorage.googleapis.com/v0/b/crescent-1.appspot.com/o/files%2Ficon3.png?alt=media&token=0437f8e3-942e-4e91-be38-2c8d18945d7b" alt="">
-</div>
-<div class="icons">
-  <a href=""><i class="zmdi zmdi-account"></i></a>
-  <a href=""><i class="zmdi zmdi-favorite-outline"></i></a>
-  <a href=""><i class="zmdi zmdi-shopping-cart"></i></a>
-</div>
+    <div class="search">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17.1 17.9" xml:space="preserve"><g><circle cx="6.8" cy="6.8" r="6.3"></circle><line x1="11.2" y1="11.5" x2="16.6" y2="17.4"></line></g></svg>
+      <input type="text" placeholder="search">
+      <span class="focus-border"></span>
+    </div>
+    <div class="logo">
+      <a href="/">
+      <img src="/assets/images/crescent_logo.png" alt="">
+    </a>
+    </div>
+    <div class="icons">
+      <a href="<%= userName === null ? '/auth/login' : '/user/profile#UserProfile' %>"><svg class="qodef-svg--account" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.4 15.4"
+          style="enable-background:new 0 0 15.4 15.4" xml:space="preserve">
+          <path
+            d="M3 10.5c1.6-.7 3.2-1 4.7-1s3 .3 4.7 1c1.6.7 2.4 1.5 2.4 2.6v1.8H.6v-1.8c0-1.1.8-2 2.4-2.6zm7.2-3.8c-.7.7-1.5 1-2.5 1s-1.8-.3-2.5-1-1-1.5-1-2.5.3-1.8 1-2.5 1.5-1 2.5-1 1.8.3 2.5 1 1 1.5 1 2.5c.1 1-.3 1.8-1 2.5z">
+          </path>
+        </svg></a>
+      <a class="fav" href="<%= userName === null ? '/auth/login' : '/user/wishlist' %>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.3 15" width="16">
+          <path
+            d="M11.8 0C13 0 14.1.4 15 1.3s1.3 1.9 1.3 3.2c0 .8-.1 1.5-.4 2.2-.3.7-.9 1.4-1.6 2.3-.8.9-1.5 1.6-2.1 2.2-.6.6-1.6 1.5-2.9 2.7L8.1 15 7 13.9c-1.4-1.3-2.3-2.2-2.9-2.7C3.4 10.6 2.7 9.9 2 9 1.2 8.1.7 7.4.4 6.7.1 6 0 5.2 0 4.5c0-1.3.4-2.3 1.3-3.2S3.2 0 4.5 0C6 0 7.2.6 8.2 1.7 9.1.6 10.3 0 11.8 0zM8.6 12.9c2.5-2.3 4.1-3.9 4.8-4.8 1-1.3 1.6-2.5 1.6-3.6 0-.9-.3-1.7-.9-2.3s-1.4-.9-2.3-.9c-1.1 0-2 .4-2.7 1.3l-1 1.1-.9-1.2c-.7-.8-1.7-1.2-2.7-1.2-.9 0-1.6.3-2.3.9s-.9 1.4-.9 2.3c0 1.1.5 2.3 1.6 3.6.7.9 2.3 2.5 4.8 4.8l.1.1.4.3.3-.3.1-.1z">
+          </path>
+        </svg></a>
+      <a class="cart" href="<%= userName === null ? '/auth/login' : '/user/cart' %>"><svg class="icon icon-cart-empty" aria-hidden="true" focusable="false"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M2 2.54155V3.08305L3.25254 3.09507L4.50507 3.10704L5.06434 5.29853C5.66793 7.66367 7.65921 15.2836 8.36469 17.9278C8.60336 18.8225 8.7991 19.5652 8.79962 19.5782C8.80019 19.5913 8.68157 19.6917 8.53605 19.8016C7.34943 20.6973 7.21015 22.5052 8.24555 23.5723C8.58867 23.9259 8.91371 24.1177 9.37445 24.2384C10.6624 24.5761 11.9598 23.7771 12.2888 22.4438C12.4422 21.822 12.377 21.225 12.0956 20.6757L11.9494 20.3904H14.973H17.9965L17.8506 20.6954C17.6605 21.0927 17.5904 21.4128 17.5943 21.8651C17.6 22.5273 17.847 23.1285 18.3055 23.5965C19.2568 24.5673 20.7407 24.5603 21.6874 23.5805C22.1726 23.0783 22.4019 22.5114 22.4019 21.8138C22.4019 20.7422 21.7515 19.7999 20.7508 19.4214C20.5097 19.3302 20.4147 19.3282 15.1906 19.306L9.87573 19.2834L9.73161 18.7412C9.65232 18.443 9.57668 18.1481 9.56352 18.086L9.53958 17.973H15.0444H20.5491L20.8895 17.8046C21.3194 17.5918 21.6778 17.2318 21.8688 16.8208C22.0209 16.4937 24.32 7.68387 24.32 7.42834C24.32 7.24439 24.2177 7.03568 24.0907 6.96045C24.0126 6.91422 22.2496 6.89809 15.2966 6.88002L6.60023 6.85743L6.00897 4.59816C5.68376 3.35556 5.3936 2.29334 5.36413 2.23768C5.2432 2.00931 5.17131 2 3.52796 2H2V2.54155ZM23.0856 8.04354C23.0751 8.06216 22.5892 9.93681 22.0059 12.2095C20.8369 16.763 20.8978 16.5787 20.4817 16.8208L20.2876 16.9338L15.1072 16.9458C11.7065 16.9537 9.87037 16.9421 9.76261 16.912C9.67233 16.8868 9.53248 16.8201 9.45183 16.7637C9.13826 16.5447 9.10382 16.4479 8.43487 13.9063C8.08817 12.5892 7.60834 10.7795 7.36853 9.88485C7.12872 8.99018 6.91912 8.20223 6.90277 8.13391L6.87304 8.00965H14.9888C19.4525 8.00965 23.096 8.02493 23.0856 8.04354ZM10.5226 20.5469C11.0001 20.7709 11.303 21.2632 11.3042 21.8173C11.3053 22.3805 11.0123 22.8533 10.5008 23.1132C10.3482 23.1908 10.2271 23.2129 9.95586 23.2129C9.68458 23.2129 9.56352 23.1908 9.41094 23.1132C9.08991 22.9501 8.90163 22.7577 8.74931 22.437C8.18547 21.2499 9.35758 20.0006 10.5226 20.5469ZM20.6018 20.5765C21.6259 21.0836 21.594 22.6161 20.5491 23.1097C20.2424 23.2546 19.766 23.2528 19.4475 23.1055C19.1476 22.9669 18.8161 22.5938 18.7165 22.2829C18.6173 21.9735 18.6459 21.4814 18.7786 21.213C18.9856 20.7945 19.3208 20.5269 19.7484 20.4387C20.0264 20.3813 20.2953 20.4248 20.6018 20.5765Z"
+            fill="black" stroke="black" stroke-width="0.27"></path>
+        </svg></a>
+    </div>
   </div>
   <div class="lower">
-
+<div class="nav-block">
+  <a href="/category/Pendants">Pendants</a>
+</div>
+<div class="nav-block">
+  <a href="/category/Bracelets">Bracelets</a>
+</div>
+<div class="nav-block">
+  <a href="/category/Payals">Payal</a>
+</div>
+<div class="nav-block">
+  <a href="">Bestsellers</a>
+</div>
+<div class="nav-block">
+  <a href="">Customised Jewelry</a>
+</div>
+<div class="nav-block">
+  <a href="">Buy as Merchant</a>
+</div>
   </div>
-</div> -->
+</div>
 
 
 
-<nav class="nav">
+<!-- <nav class="nav">
   <div class="nav__block">
     <a href="#"
       ><i class="zmdi zmdi-search"></i> Search Rings
@@ -80,4 +114,4 @@
       <%= userName === null ? 'Login/Register' : `Hi ${userName.split(" ")[0]}` %></a
     >
   </div>
-</nav>
+</nav> -->

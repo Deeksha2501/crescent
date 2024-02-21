@@ -492,3 +492,255 @@ const giveCurrentDateTime = () => {
           
             <input name="option" type="radio" id="love" class="hide">
             <label for="love">Love Me</label> -->
+
+
+
+old header and nav 
+
+    <!-- <header>
+    <div class="header-inner">
+      <div class="header-slider">
+        <div class="content">
+          <div class="slide-0">text 1</div>
+          <div class="slide-1">text 2</div>
+          <div class="slide-2">text 3</div>
+        </div>
+        <div class="media">
+          <div class="slide-0">
+            <div class="img-container">
+
+            </div>
+          </div>
+          <div class="slide-1">text 2</div>
+          <div class="slide-2">text 3</div>
+        </div>
+      </div>
+    </div>
+  </header> -->
+
+    <!-- <header class="header">
+    <div data-aos="fade-down" data-aos-duration="1000" class="header__content">
+      <div class="header__vertical_text">
+        <div class="header__vertical_text_box">
+          Where Elegance Meets Endless Inspiration.
+        </div>
+      </div>
+
+      <div class="header__text">
+        <div class="header__text__subheading">
+          Unique Collection of
+          <hr />
+        </div>
+        <div class="header__text__heading">
+          <h1>Our Silver Rings</h1>
+        </div>
+        <div class="header__text__para" id="hey">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+          deleniti quaerat est minima. Vel corrupti eaque est earum iusto.
+        </div>
+        <div class="header__text__button">
+          <a href="#">BUY NOW</a>
+        </div>
+      </div>
+    </div>
+    <div data-aos="fade-up" data-aos-duration="1000" class="header__image">
+      <div class="header__image_big" id="header_image_container">
+        <img id="header_image_0" src="assets/images/img2 2.jpg" alt="" />
+        <img id="header_image_1" src="assets/images/img1.jpg" alt="" />
+        <img id="header_image_2" src="assets/images/img3.jpg" alt="" />
+      </div>
+      <div class="header__image_small">
+        <img src="assets/images/img52.jpg" alt="" />
+      </div>
+    </div>
+  </header> -->
+
+// .header-nav {
+//   height: 100vh;
+// }
+
+// .nav {
+//   width: 100%;
+//   margin-bottom: 2rem;
+//   display: flex;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+//   height: 10rem;
+//   text-align: center;
+
+//   &__category-item,
+//   &__category-list {
+//     display: none;
+//   }
+
+//   &__line {
+//     width: 95%;
+//     text-align: center;
+//     margin: auto;
+//     height: 0.1px;
+//     background-color: #39162845;
+//     border: none;
+//   }
+
+//   &__block {
+//     align-self: center;
+//     height: 100%;
+//     flex: 1 1 0px;
+//     text-align: center;
+//     a {
+//       display: flex;
+//       align-items: center;
+//       height: 100%;
+//       justify-content: center;
+//       text-decoration: none;
+//       flex-direction: column;
+//       line-height: 2.3rem;
+//       color: #222;
+//       i {
+//         font-size: 2.1rem;
+//       }
+//       span {
+//         line-height: 3rem;
+//         color: $accent-color-text;
+//         font-weight: 800;
+//       }
+//     }
+//     img {
+//       height: 100%;
+//       padding: 1rem 0px 0 2rem;
+//       margin-top: 1rem;
+//     }
+//   }
+// }
+
+// .trasition-left{
+// img{
+//   transform: translateX(-100%) !important;
+// }
+// }
+
+// .header {
+//   height: calc(100vh - 200px);
+//   display: flex;
+//   justify-content: space-around;
+
+//   &__content {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//   }
+
+//   &__image {
+//     position: relative;
+//     display: block;
+//     width: 40vw;
+//     overflow: hidden;
+
+//     &_big {
+//       position: absolute;
+//       width: 74%;
+//       top: 50%;
+//       left: 60%;
+//       transform: translate(-55%, -50%);
+//       height: 36vw;
+//       overflow-y: scroll;
+//       overflow-x: hidden;
+//       box-shadow: 0 4px 8px 0 $shadow-color, 0 6px 20px 0 $shadow-color;
+//       transition: all 1s;
+//       background: black;
+
+//       img {
+//         height: -webkit-fill-available;
+//         transition: all 1s;
+//         display: block;
+//       }
+
+//       &::-webkit-scrollbar {
+//         display: none;
+//       }
+//     }
+
+//     &_small {
+//       img {
+//         position: absolute;
+//         width: 30%;
+//         top: 65%;
+//         left: 15%;
+//         transform: translate(-50%, -50%);
+//         box-shadow: 0 4px 8px 0 rgba(41, 18, 42, 0.2),
+//           0 6px 20px 0 rgba(41, 18, 42, 0.2);
+//       }
+//     }
+//   }
+
+//   &__vertical_text {
+//     position: absolute;
+//     transform: translate(-50%, -5%);
+
+//     &_box {
+//       transform: rotate(-90deg);
+//       font-family: "Edu TAS Beginner", cursive;
+//       letter-spacing: 1px;
+//       color: rgba($accent-color-text, 0.9);
+//     }
+//   }
+
+//   &__content {
+//     position: relative;
+//     width: 50vw;
+//     overflow-x: visible;
+//   }
+
+//   &__text {
+//     position: absolute;
+//     top: 30%;
+//     left: 15%;
+
+//     &__subheading {
+//       text-transform: uppercase;
+//       letter-spacing: 0.4rem;
+
+//       hr {
+//         display: inline-block;
+//         width: 20rem;
+//         margin-bottom: 4px;
+//         border: none;
+//         background: $accent-color-dark;
+//         height: 1px;
+//       }
+//     }
+
+//     &__heading h1 {
+//       font-size: 6.5rem;
+//       font-weight: 300;
+//       font-family: "Headland One", serif;
+//       margin-top: 1rem;
+//       color: #222;
+//       transform: translateX(-5px);
+//     }
+
+//     &__para {
+//       margin-top: 2rem;
+//       font-size: 1.4rem;
+//       width: 80%;
+//       color: darken($accent-color-dark, 10%);
+//       margin-bottom: 5rem;
+//       letter-spacing: 1px;
+//     }
+
+//     &__button a {
+//       padding: 1.5rem 3rem;
+//       text-decoration: none;
+//       color: $accent-color-text;
+//       border: 2px solid $accent-color-text;
+//       margin-top: 6rem;
+//       letter-spacing: 0.2rem;
+//       font-size: 1.4rem;
+//     }
+//   }
+// }
+
+// .header_transformed_props {
+//   opacity: 0.1;
+//   transform: scaleX(1.5);
+// }
