@@ -5,7 +5,7 @@
     <div class="addProducts-content">
       <div class="addProducts-image">
         <figure>
-          <img src="/assets/images/products.jpeg" alt="Product image" />
+          <img id="productImage" src="/assets/images/products.jpeg" alt="Product image" />
         </figure>
       </div>
 
@@ -125,7 +125,7 @@
                 type="file"
                 name="file"
                 id="images"
-                accept="image/*"
+                onchange="loadFile(event)"
                 required
               />
             </label>
@@ -172,4 +172,9 @@
     dropContainer.classList.remove("drag-active");
     fileInput.files = e.dataTransfer.files;
   });
+
+  var loadFile = function(event) {
+	var image = document.getElementById('productImage');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
 </script>

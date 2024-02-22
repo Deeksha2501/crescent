@@ -3,12 +3,41 @@
     <!-- <hr class="nav__line" /> -->
 
     <header>
+
       <div data-aos="fade-down" data-aos-duration="1000" class="content">
-        <div class="head">Diverse <br> Elegance</div>
-        <div class="tagline">Elevate Your Style, Expand Your Options: Where Variety Meets Affordability in Every
-          Sparkle.</div>
-        <button><a href="">Show now</a></button>
+        <div class="head-swiper">
+          <div class="head-content swiper-wrapper">
+            <div class="slide swiper-slide">
+              <div class="centre">
+              <div class="head">Diverse <br> Elegance</div>
+              <div class="tagline">Elevate Your Style, Expand Your Options: Where Variety Meets Affordability in Every
+                Sparkle.</div>
+              <button><a href="">Show now</a></button>
+            </div>
+            </div>
+            <div class="slide swiper-slide">
+              <div class="centre">
+              <div class="head">Buy as <br> Merchant</div>
+              <div class="tagline">Elevate Your Style, Expand Your Options: Where Variety Meets Affordability in Every
+                Sparkle.</div>
+              <button><a href="">Show now</a></button>
+              </div>
+            </div>
+            <div class="slide swiper-slide">
+              <div class="centre">
+              <div class="head">Explore <br> Collections</div>
+              <div class="tagline">Elevate Your Style, Expand Your Options: Where Variety Meets Affordability in Every
+                Sparkle.</div>
+              <button><a href="">Show now</a></button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="swiper-button-next nav-btn"></div>
+          <div class="swiper-button-prev nav-btn"></div>
+          <div class="swiper-pagination"></div> -->
+        </div>
       </div>
+
       <div data-aos="fade-up" data-aos-duration="1000" class="slides">
         <div class="slide-image" id="slide-image-0">
           <img src="/assets/images/img1.jpeg" alt="">
@@ -29,18 +58,69 @@
     </header>
 
 </div>
+
+<div class="latest">
+  <h1>Latest Collection</h1>
+  <div class="center">
+    <div class="latest-block owl-carousel owl-theme">
+      <% for(let i=0 ; i < products.length ; i++){ %>
+        <div class="card products_block__card item">
+          <div onclick="location.href='<%=`/product/${products[i]._id}/`%>';" class="products_block__card_img">
+            <img src="<%=products[i].featuredImage %>" alt="" />
+            <form class="cart" action="<%=`/user/addToCart/${products[i]._id}`%>" method="POST">
+              <button type="submit">Add To Cart</button>
+            </form>
+          </div>
+          <div class="products_block__card_details">
+            <div class="products_block__card_details_name">
+              <div class="name">
+                <%=products[i].productName %>
+              </div>
+              <div class="info">
+                <a href="#">category</a>
+              </div>
+              <div class="price">₹ <%=products[i].price %>
+              </div>
+            </div>
+            <% let url=`/user/addToWishlist/${products[i]._id}`; %>
+              <div onclick="updateWishlist(`<%= products[i]._id %>`)" data="<%=products[i].isWishlist %>"
+                class="products_block__card_details_fav">
+                <form action="<%= url %>" method="get" target=<%=`uploader_iframe_${products[i]._id}` %>>
+                  <button id=<%=`fav_button_${products[i]._id}` %> type="submit">
+                    <%if(Boolean(products[i].isWishlisted)){%>
+                      <i class="zmdi zmdi-favorite"></i>
+                      <%}else{%>
+                        <i class="zmdi zmdi-favorite-outline"></i>
+                        <%}%>
+                  </button>
+                  <div data-aos="fade-right" class="status" id=<%=`status_${products[i]._id}` %>></div>
+                </form>
+                <iframe id=<%=`uploader_iframe_${products[i]._id}` %> name=<%= `uploader_iframe_${products[i]._id}` %>
+                    ></iframe>
+              </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+  </div>
+
+  <!-- <button id="customPrevBtn">Prev button</button>
+  <button id="customNextBtn">Next button</button> -->
+
+</div>
+
 <div class="mid">
-  <div data-aos="fade-right" data-aos-duration="1000" class="mid__jewelry">
+  <div data-aos="fade-right" data-aos-duration="1000" data-aos-offset="200" class="mid__jewelry">
     <p>jewelry</p>
   </div>
   <div class="mid__quote">
     Every piece tells a story of sophistication, <br />
     tailored for the vibrant tapestry of modern life yet holding our culture.
   </div>
-  <div data-aos="fade-left" data-aos-duration="1000" class="mid__selection">
+  <div data-aos="fade-left" data-aos-duration="1000" class="mid__selection" data-aos-offset="200">
     <p>selection</p>
   </div>
-  <div class="mid__story" data-aos="flip-right" data-aos-duration="1000">
+  <div class="mid__story" data-aos="flip-right" data-aos-duration="1000" data-aos-offset="500">
     <span class="mid__story__bigO" data-text="O">O
       <span class="mid__story__text">Our Story</span>
     </span>
@@ -55,7 +135,7 @@
       </div>
     </div>
 
-    <div class="products__block products__block__item2">
+    <div onclick="location.href='/category/Pendants';" class="products__block products__block__item2">
       <span class="ellipses">
         <svg class="check" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 568.4 532.7"
           style="enable-background: new 0 0 568.4 532.7" xml:space="preserve">
@@ -75,7 +155,7 @@
       </div>
     </div>
 
-    <div class="products__block products__block__item3">
+    <div onclick="location.href='/category/Bracelets';" class="products__block products__block__item3">
       <div class="products__block__img products__block__img3"></div>
       <span class="rectangle">
         <span class="rectangle-inner"></span>
@@ -91,7 +171,7 @@
       </div>
     </div>
 
-    <div class="products__block products__block__item4">
+    <div onclick="location.href='/category/Payals';" class="products__block products__block__item4">
       <div class="products__block__img products__block__img4"></div>
       <span class="frame">
         <span class="frame-inner">
@@ -116,24 +196,137 @@
   </div>
 </div>
 
+<div class="reviews">
+  <div class="testimonial mySwiper">
+    <div class="testi-content swiper-wrapper">
+      <div class="slide swiper-slide">
+        <img src="/assets/images/me.png" alt="" class="image" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
+          saepe provident dolorem a quaerat quo error facere nihil deleniti
+          eligendi ipsum adipisci, fugit, architecto amet asperiores
+          doloremque deserunt eum nemo.
+        </p>
+        <i class="bx bxs-quote-alt-left quote-icon"></i>
+        <div class="details">
+          <span class="name">Chitresh Dhaked</span>
+          <span class="job">30th Jan 2024</span>
+        </div>
+      </div>
+      <div class="slide swiper-slide">
+        <img src="/assets/images/me.png" alt="" class="image" />
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repellendus necessitatibus nemo culpa eligendi rerum, ipsum reiciendis quo hic voluptas quod ab autem dicta architecto inventore accusantium, asperiores perspiciatis temporibus!
+        </p>
+        <i class="bx bxs-quote-alt-left quote-icon"></i>
+        <div class="details">
+          <span class="name">Chitresh Dhaked</span>
+          <span class="job">30th Jan 2024</span>
+        </div>
+      </div>
+      <div class="slide swiper-slide">
+        <img src="/assets/images/me.png" alt="" class="image" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
+          saepe provident dolorem a quaerat quo error facere nihil deleniti
+          eligendi ipsum adipisci, fugit, architecto amet asperiores
+          doloremque deserunt eum nemo.
+        </p>
+        <i class="bx bxs-quote-alt-left quote-icon"></i>
+        <div class="details">
+          <span class="name">Chitresh Dhaked</span>
+          <span class="job">30th Jan 2024</span>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-button-next nav-btn"></div>
+    <div class="swiper-button-prev nav-btn"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
 <script>
+
+  $(document).ready(function () {
+    console.log("bcjkbdkcbkdsc")
+
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      autoplay: true,
+      autoPlaySpeed: 5000,
+      autoPlayTimeout: 2000,
+      animateIn: 'fadeIn',
+      animateOut: 'fadeOut',
+      autoplayHoverPause: true,
+      lazyLoad: true,
+      nav: true,
+      dots: true,
+      navText: ["<i class='zmdi zmdi-chevron-left'></i>",
+        "<i class='zmdi zmdi-chevron-right'></i>"],
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1300: {
+          items: 4
+        }
+      }
+    })
+  });
+
+  $(document).ready(function () {
+    $(function () {
+      var swiper = new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        grabCursor: true,
+        loop: true,
+        speed : 500,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    });
+  });
+
+  $(document).ready(function () {
   const slides = document.getElementsByClassName('slide-image');
-  let currentIndex = 0;
+  let currentIndex = slides.length - 1;
 
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.zIndex = slides.length - i;
   }
 
+  var swiper = new Swiper('.head-swiper', {
+    direction: "vertical",
+    slidesPerView: 1,
+    loop: true,
+    speed: 1000,
+  });
+
+  // Initial slide movement
+  moveSlidesRight();
+
   setInterval(function () {
+    swiper.slideNext();
     moveSlidesRight();
-  }, 6000);
+  }, 5000);
 
   document.getElementById('moveRightButton').addEventListener('click', function () {
+    swiper.slideNext();
     moveSlidesRight();
   });
 
   function moveSlidesRight() {
-    slides[currentIndex].style.animation = "slideLeft 2s";
+    slides[currentIndex].style.animation = "slideLeft 1s";
 
     setTimeout(function () {
       slides[currentIndex].style.animation = "";
@@ -144,8 +337,10 @@
         slides[i % slides.length].style.zIndex = zIndex;
         zIndex--;
       }
-    }, 2000);
+    }, 1000);
   }
+});
+
 
 </script>
 

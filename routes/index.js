@@ -4,10 +4,23 @@ const router = express.Router();
 const Category = require("../models/Category");
 const Product = require("../models/Product");
 
-router.get("/", (req, res) => {
-  let userName = null;
-  if (req.user) userName = req.user.name;
-  res.render("home", { userName: userName });
+router.get("/", async (req, res) => {
+  // let userName = null;
+  // if (req.user) userName = req.user.name;
+  // res.render("home", { userName: userName });
+  try {
+    let name = null;
+    if (req.user) name = req.user.name;
+    // let products = await getProductsDataWithWishlistStatus(
+    //   req.user,
+    //   "Pendants"
+    // );
+    let products = (await Product.find().sort({createdAt:1}).limit(10)).reverse();
+    console.log({ products });
+    res.render("home", { userName: name, products: products });
+  } catch (err) {
+    console.log({ err });
+  }
 });
 
 router.get("/category/:category/", async (req, res) => {
@@ -58,7 +71,13 @@ router.get("/product/:productId", async (req, res) => {
   try {
     let userName = null;
     const productId = req.params.productId;
-    if (req.user) userName = req.user.name;
+    const product = await Product.findById(productId);
+    if(!res.user){
+      res.render("product", {
+        product: product,
+        userName: userName,
+      });
+    }else{ userName = req.user.name;
     const userWithWishlist = await req.user.populate({
       path: "wishlist",
       select: "_id",
@@ -66,7 +85,6 @@ router.get("/product/:productId", async (req, res) => {
     });
 
     const userProducts = userWithWishlist.wishlist;
-    const product = await Product.findById(productId);
     product.isWishlisted = userProducts.some((userProduct) =>
       userProduct._id.equals(product._id)
     );
@@ -74,6 +92,7 @@ router.get("/product/:productId", async (req, res) => {
       product: product,
       userName: userName,
     });
+  }
   } catch (err) {
     console.log({ err });
   }

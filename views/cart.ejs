@@ -17,11 +17,11 @@
                         <input type="text" placeholder="Coupon Code">
                         <button>Apply Coupon</button>
                     </div>
-                <div class="form-button">
-                    <button id="update-cart" type="submit" onclick="updateCart()">Update Cart</button>
-                    <div id="status"></div>
+                    <div class="form-button">
+                        <button id="update-cart" type="submit" onclick="updateCart()">Update Cart</button>
+                        <div id="status"></div>
+                    </div>
                 </div>
-            </div>
             </form>
             <iframe id="iframe-hidden" name="iframe-hidden"></iframe>
         </div>
@@ -30,160 +30,169 @@
         <div class="price-block">
             <div class="st entry">
                 <div class="text">Subtotal</div>
-                <div id="st" class="value">130.00 $</div>
+                <div id="st" class="value"></div>
             </div>
             <div class="total entry">
                 <div class="text">Total</div>
-                <div id="total" class="value">130.00 $</div>
+                <div id="total" class="value"></div>
             </div>
         </div>
         <button id="proceed-to-checkout">Proceed to checkout</button>
     </div>
-<%- include ("./footer") %>
+    <%- include ("./footer") %>
 
 
-    <script>
-        function getCart() {
-            fetch("/user/getCart")
-                .then((response) => response.json())
-                .then((json) => loadCart(json))
-                .then(updateTotal());
-        }
-
-        function loadCart(cart) {
-            let cartHTML = "";
-            let total = 0;
-            console.log(cart);
-            for (const cartItem of cart.products) {
-                const subtotal = cartItem.productId.price * cartItem.quantity;
-                total += subtotal;
-                cartHTML += `
-        <div class="cart-item">
-            <div class="remove"><i class="zmdi zmdi-close"></i></div>
-            <div class="img">
-              <img src="${cartItem.productId.featuredImage}" alt="" />
-            </div>
-            <div class="name">${cartItem.productId.productName}</div>
-            <div class="price">${cartItem.productId.price.toFixed(2)} $</div>
-            <div class="qty">
-                <div class="quantity">
-                    <label class="screen-reader-text" for="quantity_${cartItem.productId._id}">quantity</label>
-                    <span class="quantity-minus" onclick="decreaseQuantity('quantity_${cartItem.productId._id}'); updateSubtotal('${cartItem.productId._id}' , ${cartItem.productId.price})"></span>
-                    <input type="text" id="quantity_${cartItem.productId._id}" class="input-text" name="quantity_${cartItem.productId._id}" value="${cartItem.quantity}"
-                      size="4" data-min="1" data-max="" data-step="1" placeholder="" inputmode="numeric"
-                      autocomplete="off" />
-                    <span class="quantity-plus" onclick="increaseQuantity('quantity_${cartItem.productId._id}'); updateSubtotal('${cartItem.productId._id}', ${cartItem.productId.price})"></span>
-                  </div>
-            </div>
-            <div class="subtotal p_subtotal" id= "subtotal_${cartItem.productId._id}">
-              ${subtotal.toFixed(2)} $
-            </div>
-          </div>`
+        <script>
+            function getCart() {
+                fetch("/user/getCart")
+                    .then((response) => response.json())
+                    .then((json) => loadCart(json))
+                    .then(updateTotal());
             }
-            if (cartHTML != "") document.getElementById('cart-list').innerHTML = cartHTML;
-            console.log({total})
-            document.getElementById('st').innerHTML = total.toFixed(2);
-            document.getElementById('total').innerHTML = total.toFixed(2);
 
-        }
+            function loadCart(cart) {
+                let cartHTML = "";
+                let total = 0;
+                console.log(cart);
+                for (const cartItem of cart.products) {
+                    const subtotal = cartItem.productId.price * cartItem.quantity;
+                    total += subtotal;
+                    cartHTML += `
+                                <div class="cart-item">
+                                    <div class="remove"><i class="zmdi zmdi-close"></i></div>
+                                    <div class="img">
+                                    <img src="${cartItem.productId.featuredImage}" alt="" />
+                                    </div>
+                                    <div class="name">${cartItem.productId.productName}</div>
+                                    <div class="price">${cartItem.productId.price.toFixed(2)} $</div>
+                                    <div class="qty">
+                                        <div class="quantity">
+                                            <label class="screen-reader-text" for="quantity_${cartItem.productId._id}">quantity</label>
+                                            <span class="quantity-minus" onclick="decreaseQuantity('quantity_${cartItem.productId._id}'); updateSubtotal('${cartItem.productId._id}' , ${cartItem.productId.price})"></span>
+                                            <input type="text" id="quantity_${cartItem.productId._id}" class="input-text" name="quantity_${cartItem.productId._id}" value="${cartItem.quantity}"
+                                            size="4" data-min="1" data-max="" data-step="1" placeholder="" inputmode="numeric"
+                                            autocomplete="off" />
+                                            <span class="quantity-plus" onclick="increaseQuantity('quantity_${cartItem.productId._id}'); updateSubtotal('${cartItem.productId._id}', ${cartItem.productId.price})"></span>
+                                        </div>
+                                    </div>
+                                    <div class="subtotal p_subtotal" id= "subtotal_${cartItem.productId._id}">
+                                    ${subtotal.toFixed(2)} $
+                                    </div>
+                                </div>`
+                }
+                if (cartHTML != "") document.getElementById('cart-list').innerHTML = cartHTML;
+                console.log({ total })
+                document.getElementById('st').innerHTML = `${total.toFixed(2)} $`;
+                document.getElementById('total').innerHTML = `${total.toFixed(2)} $`;
 
-        function checkIframeLoaded() {
-            var iframe = document.getElementById('iframe-hidden');
+            }
 
-            function onLoadHandler() {
-                var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            function checkIframeLoaded() {
+                var iframe = document.getElementById('iframe-hidden');
 
-                if (iframeDoc) {
-                    var preElement = iframeDoc.body.getElementsByTagName('pre')[0];
+                function onLoadHandler() {
+                    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-                    if (preElement) {
-                        var response = preElement.innerHTML;
-                        console.log({ response });
-                        updateButton(response);
+                    if (iframeDoc) {
+                        var preElement = iframeDoc.body.getElementsByTagName('pre')[0];
+
+                        if (preElement) {
+                            var response = preElement.innerHTML;
+                            console.log({ response });
+                            updateButton(response);
+                        } else {
+                            console.error("Error: 'pre' element not found in iframe content.");
+                        }
                     } else {
-                        console.error("Error: 'pre' element not found in iframe content.");
+                        console.error("Error: Unable to access iframe document.");
                     }
+                }
+
+                if (iframe.readyState == 'complete') {
+                    onLoadHandler();
                 } else {
-                    console.error("Error: Unable to access iframe document.");
+                    iframe.addEventListener('load', onLoadHandler);
                 }
             }
 
-            if (iframe.readyState == 'complete') {
-                onLoadHandler();
-            } else {
-                iframe.addEventListener('load', onLoadHandler);
+
+            function updateButton(response, id) {
+                const updateButton = document.getElementById('update-cart');
+                let status = document.getElementById('status');
+                status.style.opacity = "1";
+                updateButton.style.opacity = '1';
+                if (response === "true") {
+                    status.innerHTML = 'Cart Updated!';
+                } else if (response === "false") {
+                    status.innerHTML = 'Oops an error occured';
+                    setTimeout(() => {
+                        document.location.reload();
+                    }, 5000);
+                }
+                setTimeout(function () {
+                    status.style.opacity = "0";
+                }, 2000);
             }
-        }
 
-
-        function updateButton(response, id) {
-            const updateButton = document.getElementById('update-cart');
-            let status = document.getElementById('status');
-            status.style.opacity = "1";
-            updateButton.style.opacity = '1';
-            if (response === "true") {
-                status.innerHTML = 'Cart Updated!';
-            } else if (response === "false") {
-                status.innerHTML = 'Oops an error occured';
-                setTimeout(() => {
-                    document.location.reload();
-                }, 5000);
+            function updateCart() {
+                const updateButton = document.getElementById('update-cart');
+                updateButton.style.opacity = '0.5';
+                // console.log({ id })
+                checkIframeLoaded();
             }
-            setTimeout(function () {
-                status.style.opacity = "0";
-            }, 2000);
-        }
 
-        function updateCart() {
-            const updateButton = document.getElementById('update-cart');
-            updateButton.style.opacity = '0.5';
-            // console.log({ id })
-            checkIframeLoaded();
-        }
+            function decreaseQuantity(inputId) {
+                const input = document.getElementById(inputId);
+                const currentValue = parseInt(input.value, 10);
+                const minValue = parseInt(input.getAttribute("data-min"), 10);
 
-        function decreaseQuantity(inputId) {
-            const input = document.getElementById(inputId);
-            const currentValue = parseInt(input.value, 10);
-            const minValue = parseInt(input.getAttribute("data-min"), 10);
-
-            if (currentValue > minValue) {
-                input.value = currentValue - 1;
+                if (currentValue > minValue) {
+                    input.value = currentValue - 1;
+                }
+                console.log(input.value);
             }
-            console.log(input.value);
-        }
 
-        function increaseQuantity(inputId) {
-            const input = document.getElementById(inputId);
-            const currentValue = parseInt(input.value, 10);
-            const maxValue = parseInt(input.getAttribute("data-max"), 10);
+            function increaseQuantity(inputId) {
+                const input = document.getElementById(inputId);
+                const currentValue = parseInt(input.value, 10);
+                const maxValue = parseInt(input.getAttribute("data-max"), 10);
 
-            if (isNaN(maxValue) || currentValue < maxValue) {
-                input.value = currentValue + 1;
+                if (isNaN(maxValue) || currentValue < maxValue) {
+                    input.value = currentValue + 1;
+                }
             }
-        }
 
-        function updateSubtotal(productId, price) {
-            const quantityInput = document.getElementById(`quantity_${productId}`);
-            const subtotalElement = document.getElementById(`subtotal_${productId}`);
-            const unitPrice = parseFloat(price, 10);
-            const newQuantity = parseInt(quantityInput.value, 10);
-            const newSubtotal = unitPrice * newQuantity;
-            subtotalElement.textContent = `${newSubtotal.toFixed(2)} $`;
-        }
+            function updateSubtotal(productId, price) {
+                const quantityInput = document.getElementById(`quantity_${productId}`);
+                const subtotalElement = document.getElementById(`subtotal_${productId}`);
+                const st = document.getElementById('st');
+                var count = parseFloat(st.innerHTML);
+                var oldSubtotal = parseFloat(subtotalElement.textContent);
+                count -= oldSubtotal;
+                console.log({ count })
 
-        function updateTotal(){
-            const productTotals = document.getElementsByClassName('p_subtotal');
-            console.log({productTotals})
-            console.log("first")
-            var total;
-            for(let i=0 ;i<productTotals.length ; i++){
-                console.log(productTotals[i])
+                const unitPrice = parseFloat(price, 10);
+                const newQuantity = parseInt(quantityInput.value, 10);
+                const newSubtotal = unitPrice * newQuantity;
+                count += newSubtotal;
+                subtotalElement.textContent = `${newSubtotal.toFixed(2)} $`;
+                st.textContent = `${count.toFixed(2)} $`;
+                document.getElementById('total').innerHTML = `${count.toFixed(2)} $`;
             }
-            // productTotals.forEach(subtotal => {
-            //     console.log(productTotals);
-            // });
-        }
+
+            function updateTotal() {
+                const productTotals = document.getElementsByClassName('p_subtotal');
+                console.log({ productTotals })
+                console.log("first")
+                var total;
+                for (let i = 0; i < productTotals.length; i++) {
+                    console.log(productTotals[i])
+                }
+                // productTotals.forEach(subtotal => {
+                //     console.log(productTotals);
+                // });
+            }
 
 
-        getCart();
-    </script>
+            getCart();
+        </script>

@@ -74,7 +74,7 @@ exports.addProducts = async (req, res) => {
     const dateTime = giveCurrentDateTime();
     console.log(req.file);
     console.log(req.body);
-    const {
+    let {
       productName,
       price,
       discountPrice,
@@ -88,6 +88,17 @@ exports.addProducts = async (req, res) => {
       description,
       categoryId,
     } = req.body;
+
+    discountPrice = 0;
+    countInStock = 14;
+    weight = 4; 
+      length = 50;
+      metalDescription = "Silver";
+      purity = "925 Sterling Silver";
+      warranty = "1 year Warranty";
+      stones = "N/A";
+      description = "The curb silver chain is your go to accessory for any look,dainty or bold. Taraash 925 sterling silver simple regular wear 10 inch curb chain for women.Silver finish easy to wear spring ring clasp in the chain.This distinctive curb chain has a straightforward design, so you can wear it alone or with your favourite pendant." ;
+
 
     const storageRef = ref(
       storage,

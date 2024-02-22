@@ -5,7 +5,7 @@
     <div class="product_section">
       <div class="product_section_image">
         <div class="img_container">
-          <img src="/assets/images/p-1.jpeg" alt="" />
+          <img src=<%=product.featuredImage %> alt="" />
         </div>
       </div>
       <div class="product_section_content">
@@ -20,9 +20,7 @@
               <%= product.price %> $
             </span>
             <p>
-              The preferred choice of a vast range of acclaimed DJs. Punchy,
-              bass-focused sound and high isolation. Sturdy headband and on-ear
-              cushions suitable for live performance
+              <%= product.description %>
             </p>
             <form class="cart" action="<%=`/user/addToCart/${product._id}`%>" method="post">
               <div class="quantity">
