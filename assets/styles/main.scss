@@ -542,6 +542,12 @@ header {
   }
 }
 
+@media screen and (max-width: 500px) {
+  .latest{
+    margin-bottom: 5rem;
+  }
+}
+
 .center {
   display: flex;
   align-items: center;
@@ -1164,6 +1170,9 @@ header {
       }
       aspect-ratio: unset;
       padding-bottom: 5rem;
+    }
+    &__content__title, &__content__more{
+      opacity: 1;
     }
   }
 }

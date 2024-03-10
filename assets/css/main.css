@@ -392,6 +392,11 @@ header .button-next svg {
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }
 
+@media screen and (max-width: 500px) {
+  .latest {
+    margin-bottom: 5rem;
+  }
+}
 .center {
   display: flex;
   align-items: center;
@@ -914,6 +919,9 @@ header .button-next svg {
   }
   .products__block__item1 h1 {
     font-size: 3.5rem;
+  }
+  .products__block__content__title, .products__block__content__more {
+    opacity: 1;
   }
 }
 .category__header {
