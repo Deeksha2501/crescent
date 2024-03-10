@@ -5,7 +5,10 @@ const router = express.Router();
 const authController = require("../controller/authController");
 
 //------------ Login Route ------------//
-router.get("/login", (req, res) => res.render("login"));
+router.get("/login", (req, res) => {
+  console.log("hey")
+  res.render("login")
+});
 
 //------------ Forgot Password Route ------------//
 router.get("/forgot", (req, res) => res.render("forgot"));

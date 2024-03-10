@@ -118,7 +118,8 @@ exports.switchToMerchantProfile = async (req, res) => {
 
 exports.addToCart = async (req, res) => {
   const productId = req.params.productId;
-  const quantity = req.body.quantity;
+  let quantity = req.body.quantity;
+  if(!quantity)quantity = 1;
   console.log(req.body);
   console.log(productId);
   try {
@@ -151,7 +152,7 @@ exports.addToCart = async (req, res) => {
       });
   } catch (err) {
     console.log({ err });
-    res.redirect(`/product/${productId}`);
+    res.redirect('/auth/login');
   }
 };
 
@@ -224,7 +225,8 @@ exports.addToWishlist = async (req, res) => {
     await user.save();
     res.send(responseCode);
   } catch (err) {
-    console.log(err);
+    console.log({err});
+    console.log("cjdcjd");
     res.send(undefined);
   }
 };

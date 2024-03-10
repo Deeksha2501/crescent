@@ -3,8 +3,7 @@
     <!-- <hr class="nav__line" /> -->
 
     <header>
-
-      <div data-aos="fade-down" data-aos-duration="1000" class="content">
+      <div data-aos="fade-down" data-aos-duration="1000"  class="content">
         <div class="head-swiper">
           <div class="head-content swiper-wrapper">
             <div class="slide swiper-slide">
@@ -110,7 +109,7 @@
 </div>
 
 <div class="mid">
-  <div data-aos="fade-right" data-aos-duration="1000" data-aos-offset="200" class="mid__jewelry">
+  <div data-aos="fade-right" data-aos-duration="1000" data-aos-offset="300" class="mid__jewelry">
     <p>jewelry</p>
   </div>
   <div class="mid__quote">
@@ -120,7 +119,7 @@
   <div data-aos="fade-left" data-aos-duration="1000" class="mid__selection" data-aos-offset="200">
     <p>selection</p>
   </div>
-  <div class="mid__story" data-aos="flip-right" data-aos-duration="1000" data-aos-offset="500">
+  <div class="mid__story" data-aos="flip-right" data-aos-duration="1000" data-aos-offset="400">
     <span class="mid__story__bigO" data-text="O">O
       <span class="mid__story__text">Our Story</span>
     </span>
@@ -180,6 +179,7 @@
             <path class="frame-hidden"
               d="M425.7,239.5c0-131-94.8-237.1-211.9-237.1S2,108.5,2,239.5c0,4.3,0.1,8.6,0.3,12.8v279.1h423.4V240.3h0  C425.7,240,425.7,239.7,425.7,239.5z">
             </path>
+            <!-- <use x="11" y="27" width="78" height="47.5"  /> -->
           </svg>
         </span>
       </span>
@@ -266,9 +266,12 @@
         "<i class='zmdi zmdi-chevron-right'></i>"],
       responsive: {
         0: {
-          items: 1
+          items: 2
         },
         600: {
+          items: 2
+        },
+        800: {
           items: 3
         },
         1300: {
@@ -342,6 +345,65 @@
 });
 
 
+function checkIframeLoaded(id) {
+    var iframe = document.getElementById(`uploader_iframe_${id}`);
+
+    function onLoadHandler() {
+      var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+      if (iframeDoc) {
+        var preElement = iframeDoc.body.getElementsByTagName('pre')[0];
+
+        if (preElement) {
+          var response = preElement.innerHTML;
+          console.log({ response });
+
+          // Update your button or perform other actions based on the response
+          updateButton(response, id);
+        } else {
+          console.error("Error: 'pre' element not found in iframe content.");
+          location.replace("/auth/login");
+        }
+      } else {
+        console.error("Error: Unable to access iframe document.");
+      }
+    }
+
+    if (iframe.readyState == 'complete') {
+      onLoadHandler();
+    } else {
+      // Use the load event to ensure the content is fully loaded
+      iframe.addEventListener('load', onLoadHandler);
+    }
+  }
+
+
+  function updateButton(response, id) {
+    const updateButton = document.getElementById(`fav_button_${id}`);
+    let status = document.getElementById(`status_${id}`);
+    status.style.display = "block";
+    updateButton.classList.remove('load');
+    console.log({response});
+    if (response === "true") {
+      updateButton.innerHTML = `<i class="zmdi zmdi-favorite"></i>`
+      status.innerHTML = 'Added to Wishlist';
+    } else if (response === "false") {
+      updateButton.innerHTML = `<i class="zmdi zmdi-favorite-outline"></i>`
+      status.innerHTML = 'Removed from Wishlist';
+    } else {
+      status.innerHTML = 'Try Again!';
+    }
+    setTimeout(function () {
+      status.style.display = "none";
+    }, 2000);
+  }
+
+  function updateWishlist(id) {
+    const updateButton = document.getElementById(`fav_button_${id}`);
+    updateButton.classList.add('load');
+    console.log({ id })
+    checkIframeLoaded(id);
+  }
 </script>
 
 <%- include ("./footer") %>
