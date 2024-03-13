@@ -28,7 +28,7 @@ router.get("/category/:category/", async (req, res) => {
       req.params.category
     );
     console.log({ products });
-    res.render("category", { userName: name, products: products });
+    res.render("category", { userName: name, products: products, categoryName: req.params.category });
   } catch (err) {
     console.log({ err });
   }
@@ -39,7 +39,7 @@ async function getProductsDataWithWishlistStatus(user, categoryName) {
     console.log({ categoryName });
     const category = await Category.findOne({ categoryName: categoryName });
 
-    const products = await Product.find({ categoryId: category._id });
+    const products = await Product.find({ categoryId: category._id , "createdAt" : { "$gte" : new Date("2024-03-01T20:15:31Z") }});
 
     if (!user) return products;
 
@@ -66,7 +66,11 @@ async function getProductsDataWithWishlistStatus(user, categoryName) {
 async function getProductsDataWithWishlistStatus_home(user) {
   try {
     let products = (
-      await Product.find().sort({ createdAt: 1 }).limit(10)
+      await Product.aggregate([
+        { $match: { createdAt: { $gte: new Date("2024-03-01T20:15:31Z") } } },
+        { $sort: { createdAt: -1 } },
+        { $sample: { size: 10 } }
+    ])
     ).reverse();
     if (!user) return products;
 

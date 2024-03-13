@@ -68,7 +68,7 @@ exports.addCategories = async (req, res) => {
   }
 };
 
-//------------ Register Handle ------------//
+//------------ Add Products Handle ------------//
 exports.addProducts = async (req, res) => {
   try {
     const dateTime = giveCurrentDateTime();
