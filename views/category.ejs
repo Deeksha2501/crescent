@@ -3,7 +3,13 @@
     <div class="category">
       <div class="category__header">
         <div class="category__header-text">
-          <h1><%=categoryName%></h1>
+          <%if(categoryName=="Pendants"){%>
+            <h1>Chains</h1>
+            <%}else{%>
+              <h1>
+                <%=categoryName%>
+              </h1>
+              <%}%>
         </div>
         <div class="category__header-box">
           <div class="category__header-box-bg">
